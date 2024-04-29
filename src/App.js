@@ -7,19 +7,23 @@ import Main from './Pages/Main';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Recovery from './Pages/Recovery';
+import { HashRouter } from 'react-router-dom';
+
 import ChangePassword from './Pages/ChangePassword';
 
 function App() {
+  if(window.location.hash) {
+    window.history.replaceState("", document.title, window.location.pathname);
+}
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter>
       <Routes>
           <Route path = "/" element ={<Main/>}/>
           <Route path = "/login" element ={<Login/>}/>
           <Route path = "/register" element ={<Register/>}/>
           <Route path = "/recovery" element ={<Recovery/>}/>
-          <Route path="*" element={<Main/>}/>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
