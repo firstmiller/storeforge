@@ -12,13 +12,10 @@ import { HashRouter } from 'react-router-dom';
 import ChangePassword from './Pages/ChangePassword';
 
 function App() {
-  if(window.location.hash) {
-    window.history.replaceState("", document.title, window.location.pathname);
-}
   return (
     <HashRouter>
       <Routes>
-          <Route path = "/" element ={<Main/>}/>
+          <Route exact path = "/" element ={<Main/>}/>
           <Route path = "/login" element ={<Login/>}/>
           <Route path = "/register" element ={<Register/>}/>
           <Route path = "/recovery" element ={<Recovery/>}/>
