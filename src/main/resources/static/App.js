@@ -13,7 +13,7 @@ import ChangePassword from './Pages/ChangePassword';
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
           <Route path = "/" element ={<Main/>}/>
           <Route path = "/login" element ={<Login/>}/>
@@ -21,7 +21,7 @@ function App() {
           <Route path = "/recovery" element ={<Recovery/>}/>
           <Route path="*" element={<Main/>}/>
       </Routes>
-    </BrowserRouter>
+    </Router>
 
   );
 }
