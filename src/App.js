@@ -12,6 +12,15 @@ import { HashRouter } from 'react-router-dom';
 import ChangePassword from './Pages/ChangePassword';
 
 function App() {
+  fetch('https://api.github.com/users/hacktivist123/repos')
+  .then(response => response.json())
+  .then(data => console.log(data));
+  React.useEffect(() => {    
+    // Изменяем заголовок html-страницы   
+    document.title = `Привет Maxim`;  
+    console.log("useEffect");
+},
+[]); 
   return (
     <HashRouter>
       <Routes>
