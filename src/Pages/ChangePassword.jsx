@@ -1,6 +1,7 @@
 import React from 'react';
 
 import BackgroundAuth from '../Components/Authentication/BackgroundAuth/BackgroundAuth';
+import ChangePasswordForm from '../Components/Forms/ChangePasswordForm';
 import Modal from '../Components/UI/modal/Modal';
 
 const ChangePassword = () => {
@@ -8,7 +9,7 @@ const ChangePassword = () => {
   return (
     <BackgroundAuth>
       <Modal title="Введите новый пароль">
-        <ChangePassword />
+        <ChangePasswordForm />
       </Modal>
     </BackgroundAuth>
   )

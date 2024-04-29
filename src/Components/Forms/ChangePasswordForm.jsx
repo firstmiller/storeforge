@@ -42,7 +42,7 @@ const ChangePasswordForm = () => {
           type='password'
           placeholder="Повторите новый пароль"
         />
-        <ButtonAuth type={buttonType}> Изменить пароль</ButtonAuth>
+        <ButtonAuth> Изменить пароль</ButtonAuth>
       </form>
     </>
   )
