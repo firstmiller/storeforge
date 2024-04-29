@@ -21,6 +21,9 @@ const RegisterForm = () => {
             setTextError('Пароли не совпадают!');
             e.preventDefault();
         }
+        else {
+            setTextError('');
+        }
     }
     return (
         <>
@@ -46,13 +49,15 @@ const RegisterForm = () => {
                     value={inputValues.passValue}
                     onChange={(e) => { setInputValues({ ...inputValues, passValue: e.target.value }) }}
                     type='password'
-                    placeholder="Пароль" />
+                    placeholder="Пароль"
+                />
                 <InputAuth
                     name='password2'
                     value={inputValues.repeatPassValue}
                     onChange={(e) => { setInputValues({ ...inputValues, repeatPassValue: e.target.value }) }}
                     type='password'
-                    placeholder="Повторите пароль" />
+                    placeholder="Повторите пароль"
+                />
                 <ButtonAuth>Зарегистрироваться</ButtonAuth>
             </form>
         </>

@@ -1,6 +1,4 @@
 import {BrowserRouter, Route,  Routes, Navigate} from "react-router-dom";
-
-
 import React from 'react';
 
 import './App.css';
@@ -22,7 +20,6 @@ function App() {
           <Route path="*" element={<Main/>}/>
       </Routes>
     </BrowserRouter>
-
   );
 }
 

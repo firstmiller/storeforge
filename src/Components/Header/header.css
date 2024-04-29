@@ -1,8 +1,12 @@
 .header {
-    height: 133px;
+    width: 100%;
+    height: 70px;
     background: linear-gradient(90deg, rgba(182,212,117,1) 0%, rgba(11,125,67,1) 100%);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #FFFFFF;
+    position: sticky;
+    top: 0;
+    margin-bottom: 50px;
 }
 .header__container {
     display: flex;

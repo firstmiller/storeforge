@@ -7,7 +7,6 @@ const InputAuth = ({ type, placeholder, ...props }) => {
     const isPass = type == 'password' ? true : false;
 
     const [typeInput, setTypeInput] = useState(type);
-    const [passIsVisible, setPassIsVisible] = useState(false);
     const [placeholderUp, setPlaceholderUp] = useState(false);
 
     const transformPlaceholder = () => {
@@ -16,9 +15,8 @@ const InputAuth = ({ type, placeholder, ...props }) => {
         }
     }
 
-    const changeTypeInput = (passVisible) => {
-        passVisible ? setTypeInput('text') : setTypeInput('password');
-        setPassIsVisible(!passIsVisible);
+    const changeTypeInput = () => {
+        typeInput == 'text' ? setTypeInput('password') : setTypeInput('text');
     }
 
     return (
@@ -40,8 +38,8 @@ const InputAuth = ({ type, placeholder, ...props }) => {
                 {/* Если тип инпута password, то необходимо создать элемент для скрытия/отображения пароля */}
                 {isPass ?
                     <div
-                        onClick={() => { changeTypeInput(!passIsVisible) }}
-                        className={passIsVisible ? classes.hiddenPass : classes.openPass}>
+                        onClick={() => { changeTypeInput() }}
+                        className={typeInput == 'text' ? classes.hiddenPass : classes.openPass}>
                     </div>
                     : ''}
             </label>

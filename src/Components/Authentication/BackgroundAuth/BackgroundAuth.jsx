@@ -2,10 +2,10 @@ import React from 'react';
 
 import classes from './BackgroundAuth.module.css';
 
-const BackgroundAuth = ({children}) => {
+const BackgroundAuth = ({ children }) => {
   return (
     <div className={classes.background}>
-        {children}
+      {children}
     </div>
   )
 }

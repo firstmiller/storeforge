@@ -11,8 +11,20 @@ const LoginForm = () => {
 
     return (
         <form action="">
-            <InputAuth name='login' value={loginValue} onChange={(e) => { setLoginValue(e.target.value) }} type='text' placeholder="Логин или E-mail" />
-            <InputAuth name='password' value={passValue} onChange={(e) => { setPassValue(e.target.value) }} type='password' placeholder="Пароль" />
+            <InputAuth
+                name='login'
+                value={loginValue}
+                onChange={(e) => { setLoginValue(e.target.value) }}
+                type='text'
+                placeholder="Логин или E-mail"
+            />
+            <InputAuth
+                name='password'
+                value={passValue}
+                onChange={(e) => { setPassValue(e.target.value) }}
+                type='password'
+                placeholder="Пароль"
+            />
             <ButtonAuth>Войти</ButtonAuth>
             <ErrorAuth textError={textError} />
         </form>

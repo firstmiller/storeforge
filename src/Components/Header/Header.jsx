@@ -3,17 +3,20 @@ import './header.css'
 
 function Header() {
     return (
-        <header className="header" >
-            <div className="header__container">
-                <div className="header__logo"><Link to='/' >StoreForge</Link></div>
-                <div className="header__nav">
-                    <ul className='nav'>
-                        <Link to='/help' className="nav__item">Поддержка</Link>
-                        <Link to='/login' className="nav__item">Войти</Link>
-                    </ul>
+        <>
+            <header className="header" >
+                <div className="header__container">
+                    <div className="header__logo"><Link to='/'>StoreForge</Link></div>
+                    <div className="header__nav">
+                        <ul className='nav'>
+                            <li><Link to='/help' className="nav__item">Поддержка</Link></li>
+                            <li><Link to='/login' className="nav__item">Войти</Link></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </header >
+            </header >
+        </>
+
     )
 }
 export default Header;

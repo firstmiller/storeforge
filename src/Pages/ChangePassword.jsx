@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 import BackgroundAuth from '../Components/Authentication/BackgroundAuth/BackgroundAuth';
 import Modal from '../Components/UI/modal/Modal';
 
