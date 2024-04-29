@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/storeforge/static/css/main.3838d759.css",
-    "main.js": "/storeforge/static/js/main.fd5cd318.js",
+    "main.css": "/storeforge/static/css/main.7cb63ea6.css",
+    "main.js": "/storeforge/static/js/main.1ae71405.js",
     "static/media/hidePass.png": "/storeforge/static/media/hidePass.54b3107d160578572bcc.png",
     "index.html": "/storeforge/index.html",
-    "main.3838d759.css.map": "/storeforge/static/css/main.3838d759.css.map",
-    "main.fd5cd318.js.map": "/storeforge/static/js/main.fd5cd318.js.map"
+    "main.7cb63ea6.css.map": "/storeforge/static/css/main.7cb63ea6.css.map",
+    "main.1ae71405.js.map": "/storeforge/static/js/main.1ae71405.js.map"
   },
   "entrypoints": [
-    "static/css/main.3838d759.css",
-    "static/js/main.fd5cd318.js"
+    "static/css/main.7cb63ea6.css",
+    "static/js/main.1ae71405.js"
   ]
 }
