@@ -17,7 +17,7 @@ const RegisterForm = () => {
             setTextError('Длина пароля должна быть не менее 6 и не более 30 символов.');
             e.preventDefault();
         }
-        else if (inputValues.passValue != inputValues.repeatPassValue) {
+        else if (inputValues.passValue !== inputValues.repeatPassValue) {
             setTextError('Пароли не совпадают!');
             e.preventDefault();
         }
@@ -27,7 +27,7 @@ const RegisterForm = () => {
     }
     return (
         <>
-            <ErrorAuth textError={textError} />
+            <ErrorAuth textError={textError}/>
             <form action="" onSubmit={performValidation}>
                 <InputAuth
                     name='login'
@@ -42,7 +42,6 @@ const RegisterForm = () => {
                     onChange={(e) => { setInputValues({ ...inputValues, emailValue: e.target.value }) }}
                     type='email'
                     placeholder="E-mail"
-                    autoComplete="on"
                 />
                 <InputAuth
                     name='password'

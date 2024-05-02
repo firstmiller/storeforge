@@ -1,22 +1,24 @@
 import classes from './InputAuth.module.css';
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import classNames from 'classnames';
 
 const InputAuth = ({ type, placeholder, ...props }) => {
 
-    const isPass = type == 'password' ? true : false;
+    const isPass = type === 'password' ? true : false;
 
     const [typeInput, setTypeInput] = useState(type);
-    const [placeholderUp, setPlaceholderUp] = useState(false);
+    const [placeholderUp, setPlaceholderUp] = useState(props.value !== '');
 
     const transformPlaceholder = () => {
-        if (props.value == '') {
+        if (props.value === '') {
             setPlaceholderUp(!placeholderUp);
         }
+        else
+            setPlaceholderUp(true);
     }
 
     const changeTypeInput = () => {
-        typeInput == 'text' ? setTypeInput('password') : setTypeInput('text');
+        typeInput === 'text' ? setTypeInput('password') : setTypeInput('text');
     }
 
     return (
@@ -28,6 +30,7 @@ const InputAuth = ({ type, placeholder, ...props }) => {
                     onBlur={transformPlaceholder}
                     className={classes.input}
                     type={typeInput}
+                    autoComplete="off"
                     required
                 />
 
@@ -39,7 +42,7 @@ const InputAuth = ({ type, placeholder, ...props }) => {
                 {isPass ?
                     <div
                         onClick={() => { changeTypeInput() }}
-                        className={typeInput == 'text' ? classes.hiddenPass : classes.openPass}>
+                        className={typeInput === 'text' ? classes.hiddenPass : classes.openPass}>
                     </div>
                     : ''}
             </label>

@@ -14,7 +14,7 @@ const ChangePasswordForm = () => {
       setTextError('Длина пароля должна быть не менее 6 и не более 30 символов.');
       e.preventDefault();
     }
-    else if (oldPassValue != newPassValue) {
+    else if (oldPassValue !== newPassValue) {
       setTextError('Пароли не совпадают!');
       e.preventDefault();
     }

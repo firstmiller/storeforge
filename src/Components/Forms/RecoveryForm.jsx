@@ -18,7 +18,6 @@ const RecoveryForm = () => {
                     onChange={(e) => { setemailValue(e.target.value) }}
                     type='email'
                     placeholder="E-mail"
-                    autoComplete="on"
                 />
                 <ButtonAuth>Сбросить пароль</ButtonAuth>
             </form>

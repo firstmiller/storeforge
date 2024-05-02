@@ -4,7 +4,7 @@ import classes from './ErrorAuth.module.css';
 const ErrorAuth = (props) => {
     return (
         <>
-            {props.textError == '' ? '' : <div className={classes.error}>{props.textError}</div>}
+            {props.textError === '' ? '' : <div className={classes.error}>{props.textError}</div>}
         </>
     )
 }

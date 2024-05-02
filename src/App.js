@@ -10,26 +10,19 @@ import Recovery from './Pages/Recovery';
 import { HashRouter } from 'react-router-dom';
 
 import ChangePassword from './Pages/ChangePassword';
+import NotFound from "./Pages/NotFound";
 
 function App() {
-  fetch('https://api.github.com/users/hacktivist123/repos')
-  .then(response => response.json())
-  .then(data => console.log(data));
-  React.useEffect(() => {    
-    // Изменяем заголовок html-страницы   
-    document.title = `Привет Maxim`;  
-    console.log("useEffect");
-},
-[]); 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Routes>
-          <Route exact path = "/" element ={<Main/>}/>
+          <Route path = "/" element ={<Main/>}/>
           <Route path = "/login" element ={<Login/>}/>
           <Route path = "/register" element ={<Register/>}/>
           <Route path = "/recovery" element ={<Recovery/>}/>
+          <Route path="*" element={<NotFound/>}/>
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 

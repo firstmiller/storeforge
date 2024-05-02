@@ -8,9 +8,8 @@ const LoginForm = () => {
     const [loginValue, setLoginValue] = useState('');
     const [passValue, setPassValue] = useState('');
     const [textError, setTextError] = useState('');
-
     return (
-        <form action="">
+        <form action="/login" method="post">
             <InputAuth
                 name='login'
                 value={loginValue}
@@ -21,7 +20,7 @@ const LoginForm = () => {
             <InputAuth
                 name='password'
                 value={passValue}
-                onChange={(e) => { setPassValue(e.target.value) }}
+                onChange={(e) => { setPassValue(e.target.value); console.log(123); }}
                 type='password'
                 placeholder="Пароль"
             />
