@@ -20,7 +20,7 @@ const LoginForm = () => {
             <InputAuth
                 name='password'
                 value={passValue}
-                onChange={(e) => { setPassValue(e.target.value); console.log(123); }}
+                onChange={(e) => { setPassValue(e.target.value)}}
                 type='password'
                 placeholder="Пароль"
             />

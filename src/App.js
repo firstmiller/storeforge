@@ -7,7 +7,6 @@ import Main from './Pages/Main';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Recovery from './Pages/Recovery';
-import { HashRouter } from 'react-router-dom';
 
 import ChangePassword from './Pages/ChangePassword';
 import NotFound from "./Pages/NotFound";

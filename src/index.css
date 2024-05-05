@@ -20,7 +20,7 @@ time, mark, audio, video {
 }
 a {
 	text-decoration: none;
-    color: #FFFFFF;
+    color: inherit;
 }
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box; }
 /* HTML5 display-role reset for older browsers */

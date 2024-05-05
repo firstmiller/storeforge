@@ -5,16 +5,16 @@ import ButtonAuth from '../UI/button/ButtonAuth';
 
 const ChangePasswordForm = () => {
 
-  const [oldPassValue, setOldPassValue] = useState('');
-  const [newPassValue, setNewPassValue] = useState('');
+  const [passValue, setPassValue] = useState('');
+  const [repeatPassValue, setRepeatPassValue] = useState('');
   const [textError, setTextError] = useState('');
 
   const performValidation = (e) => {
-    if (oldPassValue.length < 6 || oldPassValue.length > 30) {
+    if (passValue.length < 6 || passValue.length > 30) {
       setTextError('Длина пароля должна быть не менее 6 и не более 30 символов.');
       e.preventDefault();
     }
-    else if (oldPassValue !== newPassValue) {
+    else if (passValue !== repeatPassValue) {
       setTextError('Пароли не совпадают!');
       e.preventDefault();
     }
@@ -30,15 +30,15 @@ const ChangePasswordForm = () => {
       <form action="" onSubmit={performValidation}>
         <InputAuth
           name='newPassword'
-          value={oldPassValue}
-          onChange={(e) => { setOldPassValue(e.target.value) }}
+          value={passValue}
+          onChange={(e) => { setPassValue(e.target.value) }}
           type='password'
           placeholder="Новый пароль"
         />
         <InputAuth
           name='newPassword2'
-          value={newPassValue}
-          onChange={(e) => { setNewPassValue(e.target.value) }}
+          value={repeatPassValue}
+          onChange={(e) => { setRepeatPassValue(e.target.value) }}
           type='password'
           placeholder="Повторите новый пароль"
         />

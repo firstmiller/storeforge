@@ -5,10 +5,13 @@ import Page from '../Components/Page/Page';
 
 function Main() {
 
+
+
     return (
         <Page>
             <Header />
             <Content>
+            
             </Content>
             <Footer />
         </Page>

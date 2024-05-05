@@ -20,6 +20,7 @@ const InputAuth = ({ type, placeholder, ...props }) => {
     const changeTypeInput = () => {
         typeInput === 'text' ? setTypeInput('password') : setTypeInput('text');
     }
+    useEffect(() => { if(props.value !== '') setPlaceholderUp(true)},[props.value])
 
     return (
         <div className={classes.block}>
@@ -30,22 +31,21 @@ const InputAuth = ({ type, placeholder, ...props }) => {
                     onBlur={transformPlaceholder}
                     className={classes.input}
                     type={typeInput}
-                    autoComplete="off"
+                    autoComplete="new-password" 
                     required
                 />
 
                 <div className={classNames(classes.placeholder, placeholderUp ? classes.placeholderUp : '')}>
                     {placeholder}
                 </div>
-
-                {/* Если тип инпута password, то необходимо создать элемент для скрытия/отображения пароля */}
-                {isPass ?
-                    <div
-                        onClick={() => { changeTypeInput() }}
-                        className={typeInput === 'text' ? classes.hiddenPass : classes.openPass}>
-                    </div>
-                    : ''}
             </label>
+            {/* Если тип инпута password, то необходимо создать элемент для скрытия/отображения пароля */}
+            {isPass ?
+                <div
+                    onClick={() => { changeTypeInput() }}
+                    className={typeInput === 'text' ? classes.hiddenPass : classes.openPass}>
+                </div>
+                : ''}
         </div>
     )
 };
