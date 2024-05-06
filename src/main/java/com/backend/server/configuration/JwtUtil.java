@@ -18,7 +18,7 @@ import io.jsonwebtoken.security.Keys;
 @Service
 public class JwtUtil {
 
-    private static final String SECRET_KEY = "6a4835597e207138636a41666721377c4a397c7e7d21522d6564756320";
+    private static final String SECRET_KEY = "89a829569295bd7f12bfcc8dfa791d47301cc66d349473c2c899d9273d6e38f7";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -55,11 +55,6 @@ public class JwtUtil {
 
     public String generateToken(UserDetails userDetails) {
         return generateToken(new HashMap<>(), userDetails);
-    }
-
-    public boolean validateToken(String token, UserDetails userDetails) {
-        final String username = extractUsername(token);
-        return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
 
     private boolean isTokenExpired(String token) {
