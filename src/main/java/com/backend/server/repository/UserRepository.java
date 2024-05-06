@@ -9,8 +9,8 @@ import com.backend.server.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     
-    @Query("SELECT u FROM User u WHERE u.login = :login AND u.password = :password")
-    User findByUsernameAndPassword(@Param("login") String login, @Param("password") String password);
+    //@Query("SELECT u FROM User u WHERE u.login = :login AND u.password = :password")
+    //User findByUsernameAndPassword(@Param("login") String login, @Param("password") String password);
 
     Optional<User> findByUsername(String username);
 }
