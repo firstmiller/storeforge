@@ -1,5 +1,5 @@
 import classes from './InputAuth.module.css';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 const InputAuth = ({ type, placeholder, ...props }) => {

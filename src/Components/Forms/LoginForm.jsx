@@ -1,15 +1,42 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ErrorAuth from '../Authentication/ErrorAuth/ErrorAuth';
 import InputAuth from '../UI/input/InputAuth';
 import ButtonAuth from '../UI/button/ButtonAuth';
+import axios from 'axios';
+import { AuthContext } from '../../context';
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
 
     const [loginValue, setLoginValue] = useState('');
     const [passValue, setPassValue] = useState('');
     const [textError, setTextError] = useState('');
+    const { isAuth, setIsAuth } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const authorize = (e) => {
+        e.preventDefault();
+        setTextError('');
+        axios
+            .post("http://localhost:8080/api/auth/authenticate", {
+                username: loginValue,
+                password: passValue
+            })
+            .then(response => {
+                if (response.status === 200) {
+                    localStorage.setItem('auth', response.data.token);
+                    localStorage.setItem('isAuth', true);
+                    setIsAuth(true);
+                    console.log(response);
+                    navigate('/dashboard');
+                }
+            })
+            .catch(error => {
+                setTextError('Неверный логин или пароль');
+              })
+    }
     return (
-        <form action="/login" method="post">
+        <form onSubmit={authorize}>
             <InputAuth
                 name='login'
                 value={loginValue}
@@ -20,7 +47,7 @@ const LoginForm = () => {
             <InputAuth
                 name='password'
                 value={passValue}
-                onChange={(e) => { setPassValue(e.target.value)}}
+                onChange={(e) => { setPassValue(e.target.value) }}
                 type='password'
                 placeholder="Пароль"
             />

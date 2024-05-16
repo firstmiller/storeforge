@@ -1,14 +1,42 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import ErrorAuth from '../Authentication/ErrorAuth/ErrorAuth';
 import InputAuth from '../UI/input/InputAuth';
 import ButtonAuth from '../UI/button/ButtonAuth';
+import axios from 'axios';
+import { AuthContext } from '../../context';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
 
     const [inputValues, setInputValues] = useState({ loginValue: '', emailValue: '', passValue: '', repeatPassValue: '' });
     const [textError, setTextError] = useState('');
 
+    const { isAuth, setIsAuth } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const registerRequest = () => {
+        axios
+            .post("http://localhost:8080/api/auth/register", {
+                username: inputValues.loginValue,
+                password: inputValues.passValue,
+                email: inputValues.emailValue
+            })
+            .then(response => {
+                if (response.status === 200) {
+                    localStorage.setItem('auth', response.data.token);
+                    localStorage.setItem('isAuth', true);
+                    setIsAuth(true);
+                    console.log(response);
+                    navigate('/dashboard');
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+
     const performValidation = (e) => {
+        e.preventDefault();
         if (inputValues.loginValue.length < 2 || inputValues.loginValue.length > 30) {
             setTextError('Длина логина должна быть не менее 2 и не более 30 символов.');
             e.preventDefault();
@@ -24,11 +52,12 @@ const RegisterForm = () => {
         else {
             setTextError('');
         }
+        registerRequest();
     }
     return (
         <>
-            <ErrorAuth textError={textError}/>
-            <form action="" onSubmit={performValidation}>
+            <ErrorAuth textError={textError} />
+            <form onSubmit={performValidation}>
                 <InputAuth
                     name='login'
                     value={inputValues.loginValue}

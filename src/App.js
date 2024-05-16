@@ -1,27 +1,44 @@
-import {BrowserRouter, Route,  Routes, Navigate} from "react-router-dom";
-import React from 'react';
+import { BrowserRouter } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
 
 import './App.css';
 
-import Main from './Pages/Main';
-import Login from './Pages/Login';
-import Register from './Pages/Register';
-import Recovery from './Pages/Recovery';
-
-import ChangePassword from './Pages/ChangePassword';
-import NotFound from "./Pages/NotFound";
+import AppRouter from "./Components/AppRouter/AppRouter";
+import { AuthContext } from "./context";
 
 function App() {
+  const [isAuth, setIsAuth] = useState(localStorage.getItem('isAuth'));
+
+  useEffect(() => {
+    if (localStorage.getItem('auth')) {
+      fetch('http://localhost:8080/api/login', {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('auth')
+        }
+      })
+        .then((response) => {
+            if(response.status === 200) {
+              setIsAuth(true);
+            }
+          }
+        )
+      .catch(() => {
+        console.log('error');
+      });
+    }
+  }, []);
+
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <Routes>
-          <Route path = "/" element ={<Main/>}/>
-          <Route path = "/login" element ={<Login/>}/>
-          <Route path = "/register" element ={<Register/>}/>
-          <Route path = "/recovery" element ={<Recovery/>}/>
-          <Route path="*" element={<NotFound/>}/>
-      </Routes>
-    </BrowserRouter>
+    <AuthContext.Provider value={{
+      isAuth,
+      setIsAuth
+    }}>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <AppRouter isAuth={isAuth} />
+      </BrowserRouter>
+    </AuthContext.Provider >
   );
 }
 
