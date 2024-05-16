@@ -1,14 +1,16 @@
 {
   "files": {
-    "main.css": "/storeforge/static/css/main.481c4e29.css",
-    "main.js": "/storeforge/static/js/main.c64e62cd.js",
+    "main.css": "/storeforge/static/css/main.196cc707.css",
+    "main.js": "/storeforge/static/js/main.5a26b895.js",
+    "static/media/profileImage.svg": "/storeforge/static/media/profileImage.3828074f1123d7e9b7e2.svg",
     "static/media/hidePass.png": "/storeforge/static/media/hidePass.54b3107d160578572bcc.png",
     "index.html": "/storeforge/index.html",
-    "main.481c4e29.css.map": "/storeforge/static/css/main.481c4e29.css.map",
-    "main.c64e62cd.js.map": "/storeforge/static/js/main.c64e62cd.js.map"
+    "static/media/Arrow.svg": "/storeforge/static/media/Arrow.cd7e06ccc75b2deabccc.svg",
+    "main.196cc707.css.map": "/storeforge/static/css/main.196cc707.css.map",
+    "main.5a26b895.js.map": "/storeforge/static/js/main.5a26b895.js.map"
   },
   "entrypoints": [
-    "static/css/main.481c4e29.css",
-    "static/js/main.c64e62cd.js"
+    "static/css/main.196cc707.css",
+    "static/js/main.5a26b895.js"
   ]
 }
