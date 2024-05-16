@@ -5,8 +5,14 @@ import { AuthContext } from '../context';
 
 const Dashboard = () => {
 
-    const { isAuth, setIsAuth } = useContext(AuthContext);
+    const {setIsAuth } = useContext(AuthContext);
     const [userEmail, setUserEmail] = useState();
+
+    const logout = () => {
+        setIsAuth(false);
+        delete localStorage.isAuth;
+        delete localStorage.auth;
+    }
 
     useEffect(() => {
         fetch('http://localhost:8080/api/login', {
@@ -16,12 +22,7 @@ const Dashboard = () => {
         })
             .then((response) => {
                 if (response.status !== 200) {
-                    setIsAuth(false);
-                    delete localStorage.auth;
-                }
-                else if (response.status === 200) {
-                    setIsAuth(true);
-                    console.log('Запрос успешен')
+                    logout();
                 }
             });
         fetch('http://localhost:8080/api/auth/user', {
@@ -36,10 +37,11 @@ const Dashboard = () => {
         .catch((e) => {
             console.log(e);
         });
+          // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
         <div>
-            <DashboardHeader userEmail={userEmail}/>
+            <DashboardHeader userEmail={userEmail} logout={logout}/>
         </div>
     )
 }

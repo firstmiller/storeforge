@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import ErrorAuth from '../Authentication/ErrorAuth/ErrorAuth';
 import InputAuth from '../UI/input/InputAuth';
 import ButtonAuth from '../UI/button/ButtonAuth';
@@ -11,7 +11,7 @@ const LoginForm = () => {
     const [loginValue, setLoginValue] = useState('');
     const [passValue, setPassValue] = useState('');
     const [textError, setTextError] = useState('');
-    const { isAuth, setIsAuth } = useContext(AuthContext);
+    const {setIsAuth} = useContext(AuthContext);
     const navigate = useNavigate();
 
     const authorize = (e) => {
@@ -27,11 +27,10 @@ const LoginForm = () => {
                     localStorage.setItem('auth', response.data.token);
                     localStorage.setItem('isAuth', true);
                     setIsAuth(true);
-                    console.log(response);
                     navigate('/dashboard');
                 }
             })
-            .catch(error => {
+            .catch(() => {
                 setTextError('Неверный логин или пароль');
               })
     }

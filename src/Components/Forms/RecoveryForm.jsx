@@ -5,7 +5,7 @@ import ButtonAuth from '../UI/button/ButtonAuth';
 
 const RecoveryForm = () => {
 
-    const [emailValue, setemailValue] = useState('');
+    const [emailValue, setEmailValue] = useState('');
     const [textError, setTextError] = useState('');
 
     return (
@@ -15,7 +15,7 @@ const RecoveryForm = () => {
                 <InputAuth
                     name='email'
                     value={emailValue}
-                    onChange={(e) => { setemailValue(e.target.value) }}
+                    onChange={(e) => { setEmailValue(e.target.value) }}
                     type='email'
                     placeholder="E-mail"
                 />

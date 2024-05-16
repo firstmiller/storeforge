@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 const InputAuth = ({ type, placeholder, ...props }) => {
 
-    const isPass = type === 'password' ? true : false;
+    const isPass = type === 'password';
 
     const [typeInput, setTypeInput] = useState(type);
     const [placeholderUp, setPlaceholderUp] = useState(props.value !== '');

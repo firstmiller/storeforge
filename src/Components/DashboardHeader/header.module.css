@@ -47,13 +47,41 @@
     background-repeat: no-repeat;
     width: 14px;
     height: 9px;
-    cursor: pointer;
+    position: relative
 }
 .header__email {
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
     font-size: 18px;
     font-weight: 300;
     cursor: pointer;
+}
+
+/* submenu */
+
+.header__submenu {
+    display: none;
+}
+.header__arrow:hover .header__submenu {
+
+    display: block;
+    position: absolute;
+    padding-top: 40px;
+    right: 0;
+}
+.header__submenu ul {
+    color: black;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-radius: 5px;
+    background-color: rgb(184, 190, 196);
+}
+.header__submenu li {
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: Geneva, Verdana, sans-serif;
 }
 /* .nav__item:hover {
     color: rgba(255, 255, 255, 0.8);

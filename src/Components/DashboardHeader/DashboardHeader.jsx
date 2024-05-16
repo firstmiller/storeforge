@@ -3,7 +3,7 @@ import classes from './header.module.css';
 
 import React, { useState } from 'react'
 
-const DashboardHeader = ({userEmail}) => {
+const DashboardHeader = ({userEmail, logout}) => {
     return (
         <>
             <header className={classes.header} >
@@ -13,7 +13,14 @@ const DashboardHeader = ({userEmail}) => {
                         <div className={classes.header__profile}>
                             <div className={classes.header__email}>{userEmail}</div>
                             <div className={classes.header__profileImage}></div>
-                            <div className={classes.header__arrow}></div>
+                            <div className={classes.header__arrow}>
+                                <div className={classes.header__submenu}>
+                                    <ul>
+                                        <li>Настройки</li>
+                                        <li onClick={logout}>Выйти</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
