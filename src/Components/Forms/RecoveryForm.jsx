@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
-import ErrorAuth from '../Authentication/ErrorAuth/ErrorAuth';
+// import ErrorAuth from '../Authentication/ErrorAuth/ErrorAuth';
 import InputAuth from '../UI/input/InputAuth';
-import ButtonAuth from '../UI/button/ButtonAuth';
+import ButtonAuth from '../UI/button/ButtonAuth/ButtonAuth';
 
 const RecoveryForm = () => {
 
     const [emailValue, setEmailValue] = useState('');
-    const [textError, setTextError] = useState('');
+    // const [textError, setTextError] = useState('');
 
     return (
         <>
-            <ErrorAuth textError={textError} />
+            {/* <ErrorAuth textError={textError} /> */}
             <form action="">
                 <InputAuth
                     name='email'

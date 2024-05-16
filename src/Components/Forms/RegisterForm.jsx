@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import ErrorAuth from '../Authentication/ErrorAuth/ErrorAuth';
 import InputAuth from '../UI/input/InputAuth';
-import ButtonAuth from '../UI/button/ButtonAuth';
+import ButtonAuth from '../UI/button/ButtonAuth/ButtonAuth';
 import axios from 'axios';
 import { AuthContext } from '../../context';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +11,7 @@ const RegisterForm = () => {
     const [inputValues, setInputValues] = useState({ loginValue: '', emailValue: '', passValue: '', repeatPassValue: '' });
     const [textError, setTextError] = useState('');
 
-    const { isAuth, setIsAuth } = useContext(AuthContext);
+    const {setIsAuth } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const registerRequest = () => {

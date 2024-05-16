@@ -5,7 +5,7 @@ import { AuthContext } from '../context';
 
 const Dashboard = () => {
 
-    const {setIsAuth } = useContext(AuthContext);
+    const {setIsAuth} = useContext(AuthContext);
     const [userEmail, setUserEmail] = useState();
 
     const logout = () => {
