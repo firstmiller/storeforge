@@ -1,6 +1,8 @@
 package com.backend.server;
 
 
+import java.util.List;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -46,4 +48,10 @@ public class AuthenticationService {
         .token(JwtToken)
         .build();
     }
+
+    public List<String> getCurrentUser(String token) {
+        var user = userRepository.findByUsername(jwtUtil.extractUsername(token)).orElseThrow();
+        return List.of(user.getUsername(), user.getEmail());
+    }
 }
+
