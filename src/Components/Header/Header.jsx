@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './header.css'
 
-function Header() {
+function Header({setStateBurgerMenu, stateBurgerMenu}) {
     return (
         <>
             <header className="header" >
@@ -13,6 +13,14 @@ function Header() {
                             <li><Link to='/register' className="nav__item">Регистрация</Link></li>
                             <li><Link to='/login' className="nav__item">Войти</Link></li>
                         </ul>
+                        <div onClick={() => {setStateBurgerMenu(!stateBurgerMenu)}} className={stateBurgerMenu ? "header__burgerMenuCross" : "header__burgerMenu"}></div>
+                        <div className={stateBurgerMenu ? 'header__navbar header__navbar_active' : 'header__navbar'}>
+                        <ul className='navbar'>
+                            <li><Link to='/help' className="navbar__item">Поддержка</Link></li>
+                            <li><Link to='/register' className="navbar__item">Регистрация</Link></li>
+                            <li><Link to='/login' className="navbar__item">Войти</Link></li>
+                        </ul>
+                        </div>
                     </div>
                 </div>
             </header >

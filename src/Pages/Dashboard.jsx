@@ -15,6 +15,7 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
+        document.title = 'Панель управления | StoreForge';
         fetch('http://localhost:8080/api/login', {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('auth')
@@ -42,6 +43,12 @@ const Dashboard = () => {
     return (
         <div>
             <DashboardHeader userEmail={userEmail} logout={logout}/>
+            <div className="dashboard">
+                <div className="dashboard__navbar"></div>
+                <div className="dashboard__content">
+                    <div className="title">Настройка интернет-магазина</div>
+                </div>
+            </div>
         </div>
     )
 }

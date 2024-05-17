@@ -1,1 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+.dashboard {
+    margin-top: 70px;
+}
+.dashboard__navbar {
+    background-color: #3D4047;
+    width: 210px;
+    position: fixed;
+    min-height: calc(100vh - 70px);
+}
+.dashboard__content {
+    margin-left: 220px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+.title {
+    font-size: 32px;
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+    min-width: 320px;
+}
