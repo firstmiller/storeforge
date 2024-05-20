@@ -2,6 +2,7 @@ package com.backend.server.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,7 +38,11 @@ public class AuthenticationController {
     }
 
     @GetMapping("/user")
-    public ResponseEntity<List<String>> extractUser(@RequestHeader String token) {
+    public ResponseEntity<List<String>> extractUser(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader) {
+        String token = null;
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            token = authorizationHeader.substring(7);
+        }
         return ResponseEntity.ok(authenticationService.getCurrentUser(token));
     }
 }
