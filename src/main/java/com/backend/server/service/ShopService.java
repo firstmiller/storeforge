@@ -32,7 +32,7 @@ public class ShopService {
                .shop_name(request.getShopName())
                .logo(request.getLogo())
                .template(request.getTemplate())
-               .user_id(user.get().getId())
+               .user(user.get())
                .shop_description(request.getShopDescription())
                .styles(request.getStyles())
                .build();
@@ -45,7 +45,7 @@ public class ShopService {
 
     public ShopResponse updateShop(CreateShopRequest request) {
         Shop shop = (Shop)shopRepository.findByShopName(request.getShopName());
-            shop.setShop_name(request.getShopName());
+            shop.setShopName(request.getShopName());
             shop.setLogo(request.getLogo());
             shop.setTemplate(request.getTemplate());
             shop.setShop_description(request.getShopDescription());

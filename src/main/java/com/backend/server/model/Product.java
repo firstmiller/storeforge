@@ -25,10 +25,10 @@ public class Product {
     @Column(name = "product_name")
     private String productName;
 
-    @Column(name = "product_description", columnDefinition = "LONGTEXT")
+    @Column(name = "product_description", columnDefinition = "TEXT")
     private String productDescription;
 
-    @Column(name = "product_image", columnDefinition = "MEDIUMBLOB")
+    @Column(name = "product_image", columnDefinition = "BYTEA")
     private byte[] productImage;
 
     @ManyToOne

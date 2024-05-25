@@ -25,14 +25,14 @@ public class Shop {
     private Long shopId;
 
     @Column(name = "shop_name", nullable = false, unique = true)
-    private String shop_name;
+    private String shopName;
 
     @Lob
-    @Column(name = "logo", columnDefinition = "MEDIUMBLOB")
+    @Column(name = "logo", columnDefinition = "BYTEA")
     private byte[] logo;
 
     @Lob
-    @Column(name = "styles", columnDefinition = "LONGTEXT")
+    @Column(name = "styles", columnDefinition = "TEXT")
     private String styles;
 
     @Column(name = "template")
@@ -43,7 +43,7 @@ public class Shop {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private Long user_id;
+    private User user;
 
     @OneToMany(mappedBy = "shop")
     private Set<Product> products = new HashSet<>();
@@ -52,12 +52,12 @@ public class Shop {
     private Set<Category> categories = new HashSet<>();
     
     private Shop(ShopBuilder builder) {
-        this.shop_name = builder.shop_name;
+        this.shopName = builder.shopName;
         this.shop_description = builder.shop_description;
         this.logo = builder.logo;
         this.styles = builder.styles;
         this.template = builder.template;
-        this.user_id = builder.user_id;
+        this.user = builder.user;
         this.products = builder.products;
     }
 
@@ -66,16 +66,16 @@ public class Shop {
     }
 
         public static class ShopBuilder {
-            private String shop_name;
+            private String shopName;
             private String shop_description;
             private byte[] logo;
             private String styles;
             private String template;
-            private Long user_id;
+            private User user;
 
     
-            public ShopBuilder shop_name(String shop_name) {
-                this.shop_name = shop_name;
+            public ShopBuilder shop_name(String shopName) {
+                this.shopName = shopName;
                 return this;
             }
     
@@ -99,8 +99,8 @@ public class Shop {
                 return this;
             }
     
-            public ShopBuilder user(Long user_id) {
-                this.user_id = user_id;
+            public ShopBuilder user(User user) {
+                this.user = user;
                 return this;
             }
 
