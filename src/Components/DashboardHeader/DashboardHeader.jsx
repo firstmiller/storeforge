@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import classes from './header.module.css';
 
-import React, { useState } from 'react'
+import React from 'react'
 
 const DashboardHeader = ({userEmail, logout}) => {
     return (

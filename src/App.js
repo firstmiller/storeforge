@@ -2,17 +2,12 @@ import { BrowserRouter } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 
 import './App.css';
-import AppRouter from "./Components/AppRouter/AppRouter";
-import { AuthContext } from "./context";
+import { Router } from "@/router";
+import { AuthContext } from "@context";
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false);
 
-  useEffect(() => {
-    if (localStorage.getItem('auth')) {
-      setIsAuth(true);
-    }
-  }, [] )
+  const [isAuth, setIsAuth] = useState(localStorage.getItem('auth'));
 
   return (
     <AuthContext.Provider value={{
@@ -20,7 +15,7 @@ function App() {
       setIsAuth
     }}>
       <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <AppRouter/>
+        <Router />
       </BrowserRouter>
     </AuthContext.Provider >
   );

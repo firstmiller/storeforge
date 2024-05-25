@@ -8,12 +8,13 @@
     background-color: #8FAF94;
     color: #FFFFFF;
     font-size: 20px;
-    font-family: Tahoma,Verdana, Geneva,  sans-serif;
+    font-family: Tahoma, Verdana, Geneva, sans-serif;
     border-radius: 10px;
     border: 0;
     cursor: pointer;
     transition: all 0.3s;
 }
+
 .button:hover {
     background-color: rgba(0, 0, 0, 0.7)
 }

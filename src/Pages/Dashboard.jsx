@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
-import DashboardHeader from '../Components/DashboardHeader/DashboardHeader'
-import { AuthContext } from '../context';
-import ButtonRegister from '../Components/UI/button/ButtonRegister/ButtonRegister';
+import DashboardHeader from '@components/DashboardHeader/DashboardHeader'
+import { AuthContext } from '@context';
+import ButtonRegister from '@components/UI/button/ButtonRegister/ButtonRegister';
+import { AuthService, UserService } from '@utils/api'
 
 
 const Dashboard = () => {
@@ -11,28 +12,21 @@ const Dashboard = () => {
 
     const logout = () => {
         setIsAuth(false);
-        delete localStorage.isAuth;
         delete localStorage.auth;
     }
-
     useEffect(() => {
         document.title = 'Панель управления | StoreForge';
-        fetch('http://localhost:8080/api/login', {
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('auth')
-            }
-        })
+        AuthService.login()
             .then((response) => {
                 if (response.status !== 200) {
                     logout();
                 }
+            })
+            .catch(()=> {
+                logout();
             });
-        fetch('http://localhost:8080/api/auth/user', {
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('auth')
-            }
-        })
-            .then((response) => response.json())
+
+        UserService.getUserInfo()
             .then((user) => {
                 setUserEmail(user[1]);
             })
@@ -62,13 +56,13 @@ const Dashboard = () => {
                             </div>
                             <div className="dashboard__inputItem">
                                 <div className="dashboard__inputText">Логотип</div>
-                                <input name="file" type="file" id="input__file" className="input input__file" multiple/>
-                                    <label htmlFor="input__file" className="input__file-button">
-                                        <span className="input__file-icon-wrapper"><div className="input__file-icon"></div></span>
-                                        <span className="input__file-button-text">Загрузите изображение</span>
-                                    </label>
+                                <input name="file" type="file" id="input__file" className="input input__file" multiple />
+                                <label htmlFor="input__file" className="input__file-button">
+                                    <span className="input__file-icon-wrapper"><div className="input__file-icon"></div></span>
+                                    <span className="input__file-button-text">Загрузите изображение</span>
+                                </label>
                             </div>
-                            <ButtonRegister style={{height:'43px', width:'167px', marginTop: '21px', marginLeft:'57px'}}>Сохранить</ButtonRegister>
+                            <ButtonRegister style={{ height: '43px', width: '167px', marginTop: '21px', marginLeft: '57px' }}>Сохранить</ButtonRegister>
                         </form>
                     </div>
                 </div>

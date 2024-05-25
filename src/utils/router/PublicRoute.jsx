@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { Navigate, Outlet } from 'react-router-dom';
-import { AuthContext } from '../../context';
+import { AuthContext } from '@context';
 
-const PublicRoute = ({ children, ...rest }) => {
+const PublicRoute = () => {
 
     const { isAuth } = useContext(AuthContext);
 
