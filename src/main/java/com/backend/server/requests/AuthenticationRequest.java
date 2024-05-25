@@ -1,4 +1,4 @@
-package com.backend.server;
+package com.backend.server.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -32,7 +32,7 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_id;
 
-    @Column(length = 255, nullable = false)
+    @Column(length = 255, nullable = false, unique = true)
     private String username;
 
     @Column(length = 255, nullable = false)
@@ -40,6 +40,10 @@ public class User implements UserDetails {
 
     @Column(length = 255, nullable = false, unique = true)
     private String email;
+
+    public Long getId() {
+        return user_id;
+    }
 
     @Override
     public String getUsername() {

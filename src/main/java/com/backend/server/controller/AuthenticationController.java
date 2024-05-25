@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.server.AuthenticationRequest;
-import com.backend.server.AuthenticationResponse;
-import com.backend.server.AuthenticationService;
-import com.backend.server.RegisterRequest;
+import com.backend.server.requests.AuthenticationRequest;
+import com.backend.server.requests.AuthenticationResponse;
+import com.backend.server.requests.RegisterRequest;
+import com.backend.server.service.AuthenticationService;
 
 import lombok.RequiredArgsConstructor;
 

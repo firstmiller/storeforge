@@ -1,4 +1,4 @@
-package com.backend.server;
+package com.backend.server.service;
 
 
 import java.util.List;
@@ -12,6 +12,9 @@ import com.backend.server.configuration.JwtUtil;
 import com.backend.server.model.Role;
 import com.backend.server.model.User;
 import com.backend.server.repository.UserRepository;
+import com.backend.server.requests.AuthenticationRequest;
+import com.backend.server.requests.AuthenticationResponse;
+import com.backend.server.requests.RegisterRequest;
 
 import lombok.RequiredArgsConstructor;
 
