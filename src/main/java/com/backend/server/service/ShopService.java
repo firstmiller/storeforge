@@ -28,7 +28,8 @@ public class ShopService {
         var user = userRepository.findByUsername
         (jwtUtil.extractUsername
         (header));
-        byte[] logoBytes = Base64.getDecoder().decode(request.getLogo());
+        String base64image=request.getLogo();
+        byte[] logoBytes = Base64.getDecoder().decode(base64image);
         var shop = Shop.builder()
                .shop_name(request.getShopName())
                .logo(logoBytes)
@@ -45,9 +46,10 @@ public class ShopService {
     }
 
     public ShopResponse updateShop(String header,CreateShopRequest request) {
+        byte[] logoBytes = Base64.getDecoder().decode(request.getLogo());
         Shop shop = (Shop)shopRepository.findByShopName(request.getShopName());
             shop.setShopName(request.getShopName());
-            shop.setLogo(request.getLogo());
+            shop.setLogo(logoBytes);
             shop.setTemplate(request.getTemplate());
             shop.setShop_description(request.getShopDescription());
             shop.setStyles(request.getStyles());

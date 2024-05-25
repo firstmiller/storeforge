@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class CreateShopRequest {
     
     private String shopName;
-    private byte[] logo;
+    private String logo;
     private String styles;
     private String template;
     private String shopDescription;

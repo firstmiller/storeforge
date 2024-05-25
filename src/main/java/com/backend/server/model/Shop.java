@@ -28,7 +28,7 @@ public class Shop {
     private String shopName;
 
     @Lob
-    @Column(name = "logo", columnDefinition = "BYTEA")
+    @Column(name = "logo")
     private byte[] logo;
 
     @Lob
