@@ -30,7 +30,11 @@ public class ShopController {
     
     @PostMapping("/create")
     public ResponseEntity<ShopResponse> createShop(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader, @RequestBody CreateShopRequest request) {
-        return ResponseEntity.ok(shopService.createShop(authorizationHeader, request));
+        String token = null;
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            token = authorizationHeader.substring(7);
+        }
+        return ResponseEntity.ok(shopService.createShop(token, request));
     }
 
     @PostMapping("/update")

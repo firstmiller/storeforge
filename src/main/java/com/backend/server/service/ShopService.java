@@ -1,5 +1,6 @@
 package com.backend.server.service;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,9 +28,10 @@ public class ShopService {
         var user = userRepository.findByUsername
         (jwtUtil.extractUsername
         (header));
+        byte[] logoBytes = Base64.getDecoder().decode(request.getLogo());
         var shop = Shop.builder()
                .shop_name(request.getShopName())
-               .logo(request.getLogo())
+               .logo(logoBytes)
                .template(request.getTemplate())
                .user(user.get())
                .shop_description(request.getShopDescription())
