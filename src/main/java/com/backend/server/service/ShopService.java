@@ -10,7 +10,6 @@ import com.backend.server.model.Shop;
 import com.backend.server.repository.ShopRepository;
 import com.backend.server.repository.UserRepository;
 import com.backend.server.requests.CreateShopRequest;
-import com.backend.server.requests.GetRequest;
 import com.backend.server.requests.ShopResponse;
 
 import lombok.RequiredArgsConstructor;
@@ -23,11 +22,11 @@ public class ShopService {
     private final JwtUtil jwtUtil;
     private final UserRepository userRepository;
 
-    public ShopResponse createShop(CreateShopRequest request)
+    public ShopResponse createShop(String header, CreateShopRequest request)
     {
         var user = userRepository.findByUsername
         (jwtUtil.extractUsername
-        (request.getToken()));
+        (header));
         var shop = Shop.builder()
                .shop_name(request.getShopName())
                .logo(request.getLogo())
@@ -43,7 +42,7 @@ public class ShopService {
                .build();
     }
 
-    public ShopResponse updateShop(CreateShopRequest request) {
+    public ShopResponse updateShop(String header,CreateShopRequest request) {
         Shop shop = (Shop)shopRepository.findByShopName(request.getShopName());
             shop.setShopName(request.getShopName());
             shop.setLogo(request.getLogo());
@@ -57,7 +56,7 @@ public class ShopService {
                .build();
     }
 
-    public ShopResponse deleteShop(CreateShopRequest request) {
+    public ShopResponse deleteShop(String header, CreateShopRequest request) {
         Shop shop = (Shop)shopRepository.findByShopName(request.getShopName());
         shopRepository.delete(shop);
         return ShopResponse.builder()
@@ -65,10 +64,10 @@ public class ShopService {
                .build();
     }
 
-    public List<Shop> getShop(GetRequest request) {
+    public List<Shop> getShop(String header) {
         var user = userRepository.findByUsername
         (jwtUtil.extractUsername
-        (request.getToken()));
+        (header));
         Optional<Shop> shop = shopRepository.findById(user.get().getId());
         return shop.map(List::of).orElse(List.of());
     }

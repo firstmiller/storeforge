@@ -2,10 +2,13 @@ package com.backend.server.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,23 +29,23 @@ public class ShopController {
     private final ShopService shopService;
     
     @PostMapping("/create")
-    public ResponseEntity<ShopResponse> createShop(CreateShopRequest request) {
-        return ResponseEntity.ok(shopService.createShop(request));
+    public ResponseEntity<ShopResponse> createShop(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader, @RequestBody CreateShopRequest request) {
+        return ResponseEntity.ok(shopService.createShop(authorizationHeader, request));
     }
 
     @PostMapping("/update")
-    public ResponseEntity<ShopResponse> updateShop(CreateShopRequest request) {
-        return ResponseEntity.ok(shopService.updateShop(request));
+    public ResponseEntity<ShopResponse> updateShop(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader,@RequestBody CreateShopRequest request) {
+        return ResponseEntity.ok(shopService.updateShop(authorizationHeader,request));
     }
 
     @PostMapping("/delete")
-    public ResponseEntity<ShopResponse> deleteShop(CreateShopRequest request) {
-        return ResponseEntity.ok(shopService.deleteShop(request));
+    public ResponseEntity<ShopResponse> deleteShop(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader, @RequestBody CreateShopRequest request) {
+        return ResponseEntity.ok(shopService.deleteShop(authorizationHeader, request));
     }
 
     @GetMapping("/get")
-    public ResponseEntity<List<Shop>> getShop(GetRequest request) {
-        return ResponseEntity.ok(shopService.getShop(request));
+    public ResponseEntity<List<Shop>> getShop(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader) {
+        return ResponseEntity.ok(shopService.getShop(authorizationHeader));
     }
 
 }
