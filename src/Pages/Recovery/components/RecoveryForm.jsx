@@ -1,6 +1,6 @@
 import React from 'react'
-import InputAuth from '@components/UI/input/InputAuth';
-import ButtonAuth from '@components/UI/button/ButtonAuth/ButtonAuth';
+import {InputAuth} from '@components/UI/input';
+import {ButtonAuth} from '@components/UI/button';
 
 const RecoveryForm = ({emailValue, setEmailValue, textError}) => {
 

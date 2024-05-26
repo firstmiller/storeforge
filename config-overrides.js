@@ -4,6 +4,7 @@ const path = require('path');
 console.log('Applying custom webpack configuration');
 
 module.exports = override(
+  
   addWebpackAlias({
     '@': path.resolve(__dirname, 'src'),
     "@pages": path.resolve(__dirname, 'src/pages'),

@@ -1,9 +1,9 @@
 import { BrowserRouter } from "react-router-dom";
-import React, { useEffect, useState } from 'react';
-
+import React, { useState } from 'react';
 import './App.css';
 import { Router } from "@/router";
 import { AuthContext } from "@context";
+
 
 function App() {
 

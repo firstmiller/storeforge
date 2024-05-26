@@ -2,8 +2,9 @@ import React from 'react'
 import classes from './navbar.module.css';
 
 import { Category } from '../Category';
+import { Slider } from '../Slider';
 
-const Navbar = ({ sliderValue, setSliderValue }) => {
+const Navbar = ({ priceRangeValues, setPriceRangeValues }) => {
     return (
         <div className={classes.navbar}>
             <div className={classes.navbar__categories}>
@@ -18,14 +19,15 @@ const Navbar = ({ sliderValue, setSliderValue }) => {
             <div className={classes.pricerange}>
                 <div className={classes.pricerange__title}>Цена</div>
                 <div className={classes.slidecontainer}>
-                    <input onChange={(e) => { setSliderValue(e.target.value) }} type="range" min="1" max="100" value={sliderValue} id="myRange" />
+                    <Slider values={priceRangeValues} setValues={setPriceRangeValues} />
                 </div>
+
                 <div className={classes.pricerange__inputs}>
                     <div className={classes.pricerange__minPrice}>
-                        <input placeholder='Мин цена' type="text" />
+                        <input type="text" onChange={(e) => {setPriceRangeValues([e.target.value, priceRangeValues[1]])}}  value={priceRangeValues[0]} placeholder='Мин цена' />
                     </div>
                     <div className={classes.pricerange__maxPrice}>
-                        <input type="text" placeholder='Макс цена' />
+                        <input type="text" onChange={(e) => {setPriceRangeValues([priceRangeValues[0], e.target.value])}} value={priceRangeValues[1]} placeholder='Макс цена' />
                     </div>
                 </div>
                 <div className={classes.navbar__categoryList}>

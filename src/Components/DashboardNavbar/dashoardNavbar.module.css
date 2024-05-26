@@ -1,0 +1,31 @@
+.dashboard__navbar {
+    background-color: #3D4047;
+    width: 210px;
+    position: fixed;
+    min-height: calc(100vh - 70px);
+    padding-top: 40px;
+}
+
+.dashboard__navbar ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard__navbar li {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    padding-left: 40px;
+    font-weight: 300;
+    font-size: 20px;
+    height: 42px;
+    font-family: "Open Sans";
+    color: #FFFFFF;
+}
+.dashboard__navbar_active {
+    background-color: #545760;
+}
+
+.dashboard__navbar li:hover {
+    background-color: #545760;
+}

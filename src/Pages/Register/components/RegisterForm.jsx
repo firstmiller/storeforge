@@ -1,7 +1,7 @@
 import React from 'react'
 import ErrorAuth from '@components/Authentication/ErrorAuth/ErrorAuth';
-import InputAuth from '@components/UI/input/InputAuth';
-import ButtonAuth from '@components/UI/button/ButtonAuth/ButtonAuth';
+import { InputAuth } from '@components/UI/input';
+import { ButtonAuth } from '@components/UI/button';
 
 const RegisterForm = ({ inputValues, setInputValues, textError, performValidation }) => {
 

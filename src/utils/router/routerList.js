@@ -1,4 +1,6 @@
 import Dashboard from "@pages/Dashboard"
+import Products from "@pages/Products"
+import Templates from "@pages/Templates"
 import { Login } from "@pages/Login"
 import { Main } from "@pages/Main"
 import { NotFound } from "@pages/NotFound"
@@ -8,8 +10,9 @@ import { Store } from "@/templates"
 
 export const privateRoutes = [
     { path: '/dashboard', component: Dashboard },
-    { path: '/dashboard/templates', component: Dashboard },
-    { path: '/dashboard/products', component: Dashboard }
+    { path: '/dashboard/templates', component: Templates },
+    { path: '/test', component: Store },
+    { path: '/dashboard/products', component: Products }
 ]
 export const publicRoutes = [
     { path: '/', component: Main },
@@ -18,5 +21,4 @@ export const publicRoutes = [
     { path: '/recovery', component: Recovery },
     { path: '/store', component: Store },
     { path: '*', component: NotFound }
-
 ]

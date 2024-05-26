@@ -18,14 +18,14 @@ const Register = () => {
   const [textError, setTextError] = useState('');
 
   const registerRequest = () => {
-    AuthService.register(inputValues.loginValue, inputValues.emailValue, inputValues.passValue)
+    AuthService.register(inputValues)
       .then(response => {
         if (response.status === 200) {
           login(response, setIsAuth, navigate);
         }
       })
       .catch(error => {
-        console.log(error)
+        setTextError(error.message);
       })
   }
 
@@ -45,8 +45,8 @@ const Register = () => {
     }
     else {
       setTextError('');
+      registerRequest();
     }
-    registerRequest();
   }
 
   useEffect((() => {

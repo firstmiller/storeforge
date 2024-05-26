@@ -3,13 +3,14 @@ import { serverURI } from '@/constants'
 
 export default class AuthService {
 
-    static async register(login, email, password) {
-        const formdata = new FormData();
-        formdata.append("username", login);
-        formdata.append("password", password);
-        formdata.append("email", email);
+    static async register(inputs) {
+
         const response = await axios
-            .post(`${serverURI}/auth/register`, formdata)
+            .post(`${serverURI}/api/auth/register`, {
+                username: inputs.loginValue,
+                password: inputs.passValue,
+                email: inputs.emailValue
+            })
         return response;
     }
     static async authenticate(login, password) {
@@ -28,5 +29,4 @@ export default class AuthService {
         })
         return response;
     }
-
 }

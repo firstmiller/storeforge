@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import ErrorAuth from '../../../components/Authentication/ErrorAuth/ErrorAuth';
-import InputAuth from '../../../components/UI/input/InputAuth';
-import ButtonAuth from '../../../components/UI/button/ButtonAuth';
+import ErrorAuth from '@components/Authentication/ErrorAuth/ErrorAuth';
+import { InputAuth } from '@components/components/UI/input';
+import { ButtonAuth } from '@components/components/UI/button';
 
-const ChangePasswordForm = ({inputValues, setInputValues, textError, performValidation}) => {
+const ChangePasswordForm = ({ inputValues, setInputValues, textError, performValidation }) => {
 
   return (
     <>
@@ -12,14 +12,14 @@ const ChangePasswordForm = ({inputValues, setInputValues, textError, performVali
         <InputAuth
           name='newPassword'
           value={passValue}
-          onChange={(e) => { setInputValues({...inputValues, password: e.target.value}) }}
+          onChange={(e) => { setInputValues({ ...inputValues, password: e.target.value }) }}
           type='password'
           placeholder="Новый пароль"
         />
         <InputAuth
           name='newPassword2'
           value={repeatPassValue}
-          onChange={(e) => { setInputValues({...inputValues, repeatPassValue: e.target.value}) }}
+          onChange={(e) => { setInputValues({ ...inputValues, repeatPassValue: e.target.value }) }}
           type='password'
           placeholder="Повторите новый пароль"
         />
