@@ -42,6 +42,7 @@ public class ShopService {
                .user(user.get())
                .shop_description(request.getShopDescription())
                .styles(request.getStyles())
+               .user(user.get())
                .build();
         
         shopRepository.save(shop);

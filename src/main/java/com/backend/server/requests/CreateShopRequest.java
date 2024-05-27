@@ -16,4 +16,5 @@ public class CreateShopRequest {
     private String styles;
     private String template;
     private String shopDescription;
+    private String username;
 }

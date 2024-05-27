@@ -28,7 +28,7 @@ public class Product {
     @Column(name = "product_description", columnDefinition = "TEXT")
     private String productDescription;
 
-    @Column(name = "product_image", columnDefinition = "BYTEA")
+    @Column(name = "product_image")
     private byte[] productImage;
 
     @ManyToOne
