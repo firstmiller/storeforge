@@ -46,7 +46,7 @@ public class ProductService {
         {
             Shop shop = optionalShop.get();
             Set<Category> categories = new HashSet<>();
-            categories.addAll(categoryRepository.findAllByShopIdAndCategoryName(shop.getShopId(), request.getCategories()));
+            categories.addAll(categoryRepository.findAllByShop_ShopIdAndCategoryNameIn(shop.getShopId(), request.getCategories()));
             var product = Product.builder()
             .productName(request.getName())
             .productDescription(request.getDescription())
@@ -69,7 +69,7 @@ public class ProductService {
         else
         {
             Shop shop = optionalShop.get();
-            return productRepository.findAllByShopId(shop.getShopId());
+            return productRepository.findAllByShop_ShopId(shop.getShopId());
         }
     }
 
@@ -82,7 +82,7 @@ public class ProductService {
         {
             Shop shop = optionalShop.get();
             Set<Category> categories = new HashSet<>();
-            categories.addAll(categoryRepository.findAllByShopIdAndCategoryName(shop.getShopId(), request.getCategories()));
+            categories.addAll(categoryRepository.findAllByShop_ShopIdAndCategoryNameIn(shop.getShopId(), request.getCategories()));
             var product = Product.builder()
             .productName(request.getName())
             .productDescription(request.getDescription())
@@ -104,7 +104,7 @@ public class ProductService {
         else
         {
             Shop shop = optionalShop.get();
-            productRepository.deleteByShopIdAndProductName(shop.getShopId(), request.get(1));
+            productRepository.deleteByShop_ShopIdAndProductName(shop.getShopId(), request.get(1));
             return new ProductResponse(List.of(request.get(1)));
         }
     }
@@ -117,7 +117,7 @@ public class ProductService {
         else
         {
             Shop shop = optionalShop.get();
-            List<Product> products = productRepository.findAllByShopId(shop.getShopId());
+            List<Product> products = productRepository.findAllByShop_ShopId(shop.getShopId());
             return ProductResponse.class.cast(products);
         }
     }

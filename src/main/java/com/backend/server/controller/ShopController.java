@@ -52,7 +52,11 @@ public class ShopController {
 
     @GetMapping("/get")
     public ResponseEntity<Shop> getShop(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader) {
-        return ResponseEntity.ok(shopService.getShop(authorizationHeader));
+        String token = null;
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            token = authorizationHeader.substring(7);
+        }
+        return ResponseEntity.ok(shopService.getShop(token));
     }
 
 }

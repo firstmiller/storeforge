@@ -8,8 +8,8 @@ import com.backend.server.model.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Long>{
 
-    List<Product> findAllByShopId(Long shopId);
+    List<Product> findAllByShop_ShopId(Long shopId);
 
-    void deleteByShopIdAndProductName(Long shopId, String request);
+    void deleteByShop_ShopIdAndProductName(Long shopId, String request);
     
 }

@@ -48,11 +48,13 @@ public class Category {
         this.categoryId = builder.categoryId;
         this.categoryName = builder.categoryName;
         this.products = builder.products;
+        this.shop = builder.shop;
     }
 
     public static class CategoryBuilder {
         private Long categoryId;
         private String categoryName;
+        private Shop shop;
         private Set<Product> products = new HashSet<>();
 
         public CategoryBuilder categoryId(Long categoryId) {
@@ -67,6 +69,11 @@ public class Category {
 
         public CategoryBuilder products(Set<Product> products) {
             this.products = products;
+            return this;
+        }
+
+        public CategoryBuilder shop(Shop shop) {
+            this.shop = shop;
             return this;
         }
         

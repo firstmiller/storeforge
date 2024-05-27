@@ -1,9 +1,18 @@
 package com.backend.server.controller;
 
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.backend.server.requests.CategoryResponse;
+import com.backend.server.requests.CreateCategoryRequest;
+import com.backend.server.requests.GetRequest;
+import com.backend.server.requests.UpdateCategoryRequest;
 import com.backend.server.service.CategoryService;
 
 import lombok.RequiredArgsConstructor;
@@ -15,4 +24,24 @@ import lombok.RequiredArgsConstructor;
 public class CategoryController {
     
     private final CategoryService categoryService;
+
+    @PostMapping("/create")
+    public ResponseEntity<CategoryResponse> createCategory(@RequestBody CreateCategoryRequest request) {
+        return ResponseEntity.ok(categoryService.createCategory(request));
+    }
+
+    @PostMapping("/get")
+    public ResponseEntity<List<CategoryResponse>> getCategory(@RequestBody GetRequest request) {
+        return ResponseEntity.ok(categoryService.getCategory(request));
+    }
+
+    @PostMapping("/update")
+    public ResponseEntity<CategoryResponse> updateCategory(@RequestBody UpdateCategoryRequest request) {
+        return ResponseEntity.ok(categoryService.updateCategory(request));
+    }
+
+    @PostMapping("/delete")
+    public ResponseEntity<CategoryResponse> deleteCategory(@RequestBody String request) {
+        return ResponseEntity.ok(categoryService.deleteCategory(request));
+    }
 }
