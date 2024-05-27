@@ -1,5 +1,5 @@
 import Dashboard from "@pages/Dashboard"
-import Products from "@pages/Products"
+import {Products} from "@pages/Products"
 import Templates from "@pages/Templates"
 import { Login } from "@pages/Login"
 import { Main } from "@pages/Main"

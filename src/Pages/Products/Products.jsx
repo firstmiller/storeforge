@@ -6,29 +6,33 @@ import { AuthService, UserService } from '@utils/api'
 import { DashboardLayout } from '@components/DashboardLayout';
 import { ModalDashboard } from '@components/UI/modal';
 import { InputDashboard } from '@components/UI/input';
+import { ProductRow } from './components/ProductRow';
+import { stringImgBase64 } from '@/constants';
+
+import axios from 'axios';
 
 
 const Products = () => {
     const { setIsAuth } = useContext(AuthContext);
     const [userEmail, setUserEmail] = useState();
     const [modalActive, setModalActive] = useState(false);
-    const [inputsProduct, setInputsProduct] = useState({ name: '', price: '', category: '', imageBase64: '' });
+    const [inputsProduct, setInputsProduct] = useState({ name: '', price: '', category: '', imageBase64: '', count:'' });
     const [nameImage, setNameImage] = useState('');
-
+    const imgBase64 = stringImgBase64;
+    const [products, setProducts] = useState([{ name: 'Iphone 5', price: '20000', categories: 'Apple', image: imgBase64, count: '10' }, { name: 'Iphone 6', price: '25000', categories: 'Apple', image: imgBase64, count: '5' }, { name: 'Iphone 7', price: '35000', categories: 'Apple', image: imgBase64, count: '3' }])
     const addProduct = () => {
-        // const newShop = {
-        //     shopName: inputsProduct.name,
-        //     logo: inputsProduct.imageBase64,
-        //     styles: '123',
-        //     template: 'sadsad',
-        //     shopDescription: inputsProduct.category
-        //   };
-        // const axiosResponse =  axios.post('http://localhost:8080/api/shop/update', newShop, {
-        //     headers: {
-        //       "Content-type": "application/json; charset=UTF-8",
-        //       Authorization: 'Bearer ' + localStorage.getItem('auth')
-        //     }
-        //   });
+        const newShop = {
+            shopName: 'asdasd',
+            logo: inputsProduct.imageBase64,
+            styles: 'styles',
+            template: '213213',
+            shopDescription: inputsProduct.category
+        };
+        const axiosResponse = axios.post('http://localhost:8080/api/shop/get', {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('auth')
+            }
+        });
     }
     let base64String = "";
 
@@ -39,7 +43,7 @@ const Products = () => {
         reader.onload = function () {
             base64String = reader.result.replace("data:", "")
                 .replace(/^.+,/, "");
-            setInputsProduct({...inputsProduct, imageBase64: base64String})
+            setInputsProduct({ ...inputsProduct, imageBase64: base64String })
             console.log(base64String);
         }
         reader.readAsDataURL(file);
@@ -75,7 +79,7 @@ const Products = () => {
             <div className="dashboard__content">
                 <div className="container">
                     <div className="products__menu">
-                        <div className="products__count">Товаров 10</div>
+                        <div className="products__count">Товаров {products.length}</div>
                         <ButtonRegister onClick={() => { setModalActive(true) }} style={{ height: '43px', width: '167px' }}>Добавить товар</ButtonRegister>
                     </div>
                 </div>
@@ -93,46 +97,9 @@ const Products = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>9.1</td>
-                                    <td>Зелёная миля</td>
-                                    <td>1999</td>
-                                    <td>1999</td>
-                                    <td>
-                                        <div className="changeProducts">
-                                            <ButtonRegister style={{ backgroundColor: '#ACB3AD', height: '29px', width: '129px', fontSize: '16px' }}>Редактировать</ButtonRegister>
-                                            <ButtonRegister style={{ backgroundColor: '#ACB3AD', height: '29px', width: '129px', fontSize: '16px' }}>Удалить</ButtonRegister>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>9.1</td>
-                                    <td>Побег из Шоушенка</td>
-                                    <td>1994</td>
-                                    <td>1994</td>
-                                    <td>
-                                        <div className="changeProducts">
-                                            <ButtonRegister style={{ backgroundColor: '#ACB3AD', height: '29px', width: '129px', fontSize: '16px' }}>Редактировать</ButtonRegister>
-                                            <ButtonRegister style={{ backgroundColor: '#ACB3AD', height: '29px', width: '129px', fontSize: '16px' }}>Удалить</ButtonRegister>
-                                        </div>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>8.6</td>
-                                    <td>Властелин колец: Возвращение Короля</td>
-                                    <td>2003</td>
-                                    <td>1994</td>
-                                    <td>
-                                        <div className="changeProducts">
-                                            <ButtonRegister style={{ backgroundColor: '#ACB3AD', height: '29px', width: '129px', fontSize: '16px' }}>Редактировать</ButtonRegister>
-                                            <ButtonRegister style={{ backgroundColor: '#ACB3AD', height: '29px', width: '129px', fontSize: '16px' }}>Удалить</ButtonRegister>
-                                        </div>
-                                    </td>
-                                </tr>
+                                {products.map((product) => {
+                                    return <ProductRow name={product.name} price={product.price} categories={product.categories} imageBase64={product.image} count={product.count} />
+                                })}
                             </tbody>
                         </table>
                     </div>
@@ -155,13 +122,18 @@ const Products = () => {
                     onChange={(e) => { setInputsProduct({ ...inputsProduct, category: e.target.value }) }}
                     title="Категории"
                 />
+                <InputDashboard
+                    value={inputsProduct.category}
+                    onChange={(e) => { setInputsProduct({ ...inputsProduct, count: e.target.value }) }}
+                    title="Количество"
+                />
                 <input onChange={imageUploaded} name="file" type="file" id="input__file" className="input input__file" multiple />
                 <label htmlFor="input__file" className="input__file-button">
                     <span className="input__file-icon-wrapper"><div className="input__file-icon"></div></span>
                     <span className="input__file-button-text">Загрузите изображение</span>
                 </label>
                 {nameImage}
-                <ButtonRegister onClick={addProduct} style={{ height: '43px', width: '167px' }}>Сохранить</ButtonRegister>
+                <ButtonRegister onClick={addProduct} style={{ height: '43px', width: '167px' }}>Добавить товар</ButtonRegister>
             </ModalDashboard>
         </DashboardLayout>
     )

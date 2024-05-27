@@ -126,16 +126,8 @@ table {
 thead tr {
     height: 50px;
     vertical-align: middle;
-    border-bottom:1px solid #B6B6B6
+    border-bottom:1px solid #B6B6B6;
 }
-tbody tr {
-    height: 86px;
-    border-bottom:1px solid #B6B6B6
-}
-tbody tr td {
-    vertical-align: middle;
-}
-
 thead tr {
     font-size: 20px;
     font-family: Tahoma, Geneva, Verdana, sans-serif;
