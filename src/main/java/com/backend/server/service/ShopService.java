@@ -12,6 +12,7 @@ import com.backend.server.repository.ShopRepository;
 import com.backend.server.repository.UserRepository;
 import com.backend.server.requests.CreateShopRequest;
 import com.backend.server.requests.ShopResponse;
+import com.backend.server.requests.UpdateShopRequest;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,6 +30,10 @@ public class ShopService {
         (jwtUtil.extractUsername
         (header));
         String base64image=request.getLogo();
+        if (base64image==null || base64image.trim().isEmpty())
+        {
+            throw new IllegalArgumentException();
+        }
         byte[] logoBytes = Base64.getDecoder().decode(base64image);
         var shop = Shop.builder()
                .shop_name(request.getShopName())
@@ -38,42 +43,62 @@ public class ShopService {
                .shop_description(request.getShopDescription())
                .styles(request.getStyles())
                .build();
-
+        
         shopRepository.save(shop);
         return ShopResponse.builder()
                .shopName(request.getShopName())
                .build();
     }
 
-    public ShopResponse updateShop(String header,CreateShopRequest request) {
-        byte[] logoBytes = Base64.getDecoder().decode(request.getLogo());
-        Shop shop = (Shop)shopRepository.findByShopName(request.getShopName());
-            shop.setShopName(request.getShopName());
+    public ShopResponse updateShop(String header, UpdateShopRequest request) {
+        
+        Optional<Shop> optionalShop = shopRepository.findByShopName(request.getShopName());
+        if (!optionalShop.isPresent()) {
+            throw new IllegalArgumentException();
+        }
+        else
+        {
+            Shop shop = optionalShop.get();
+            if (!(shop.getShopName().equals(request.getShopName())))
+            {
+                shop.setShopName(request.getShopName());
+            }
+            byte[] logoBytes = Base64.getDecoder().decode(request.getLogo());
             shop.setLogo(logoBytes);
             shop.setTemplate(request.getTemplate());
             shop.setShop_description(request.getShopDescription());
             shop.setStyles(request.getStyles());
             
-        shopRepository.save(shop);
-        return ShopResponse.builder()
-               .shopName(request.getShopName())
-               .build();
+            shopRepository.save(shop);
+            return ShopResponse.builder()
+                   .shopName(request.getShopName())
+                   .build();
+        }
+        
     }
 
-    public ShopResponse deleteShop(String header, CreateShopRequest request) {
-        Shop shop = (Shop)shopRepository.findByShopName(request.getShopName());
-        shopRepository.delete(shop);
-        return ShopResponse.builder()
-               .shopName(request.getShopName())
-               .build();
+    public ShopResponse deleteShop(String header, String request) {
+        Optional<Shop> optionalShop = shopRepository.findByShopName(request);
+        if (optionalShop.isPresent())
+        {
+            Shop shop = optionalShop.get();
+            shopRepository.delete(shop);
+            return ShopResponse.builder()
+                .shopName(request)
+                .build();
+        }
+        else
+        {
+            throw new IllegalArgumentException();
+        }
     }
 
-    public List<Shop> getShop(String header) {
+    public Shop getShop(String header) {
         var user = userRepository.findByUsername
         (jwtUtil.extractUsername
         (header));
-        Optional<Shop> shop = shopRepository.findById(user.get().getId());
-        return shop.map(List::of).orElse(List.of());
+        Optional<Shop> optionalShop = shopRepository.findById(user.get().getId());
+        return optionalShop.get();
     }
 
 }

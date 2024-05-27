@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.server.model.Shop;
 import com.backend.server.requests.CreateShopRequest;
-import com.backend.server.requests.GetRequest;
 import com.backend.server.requests.ShopResponse;
+import com.backend.server.requests.UpdateShopRequest;
 import com.backend.server.service.ShopService;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -28,6 +29,7 @@ public class ShopController {
 
     private final ShopService shopService;
     
+    @Transactional
     @PostMapping("/create")
     public ResponseEntity<ShopResponse> createShop(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader, @RequestBody CreateShopRequest request) {
         String token = null;
@@ -37,18 +39,19 @@ public class ShopController {
         return ResponseEntity.ok(shopService.createShop(token, request));
     }
 
+    @Transactional
     @PostMapping("/update")
-    public ResponseEntity<ShopResponse> updateShop(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader,@RequestBody CreateShopRequest request) {
+    public ResponseEntity<ShopResponse> updateShop(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader,@RequestBody UpdateShopRequest request) {
         return ResponseEntity.ok(shopService.updateShop(authorizationHeader,request));
     }
 
     @PostMapping("/delete")
-    public ResponseEntity<ShopResponse> deleteShop(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader, @RequestBody CreateShopRequest request) {
+    public ResponseEntity<ShopResponse> deleteShop(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader, @RequestBody String request) {
         return ResponseEntity.ok(shopService.deleteShop(authorizationHeader, request));
     }
 
     @GetMapping("/get")
-    public ResponseEntity<List<Shop>> getShop(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader) {
+    public ResponseEntity<Shop> getShop(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader) {
         return ResponseEntity.ok(shopService.getShop(authorizationHeader));
     }
 
