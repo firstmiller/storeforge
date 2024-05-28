@@ -36,7 +36,7 @@ public class Product {
     @JoinColumn(name = "shop_id", nullable = false)
     private Shop shop;
 
-    @Column(name = "price", columnDefinition = "money")
+    @Column(name = "price")
     private BigDecimal price;
 
     @Column(name = "quantity")
