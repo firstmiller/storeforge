@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -118,7 +120,7 @@ public class ProductService {
         {
             Shop shop = optionalShop.get();
             List<Product> products = productRepository.findAllByShop_ShopId(shop.getShopId());
-            return ProductResponse.class.cast(products);
+            return new ProductResponse(products.stream().map(Product::getProductName).collect(Collectors.toList()));
         }
     }
 }

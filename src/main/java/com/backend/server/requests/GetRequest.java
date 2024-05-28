@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GetRequest {
     
+    
     private String token;
     private String shopName;
     private String productName;

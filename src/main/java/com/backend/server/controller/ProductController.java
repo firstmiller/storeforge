@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -46,8 +47,9 @@ public class ProductController {
         return ResponseEntity.ok(productService.deleteProduct(request));
     }
 
+    @Transactional
     @GetMapping("/get")
-    public ResponseEntity<ProductResponse> getProducts(@RequestParam GetRequest request) {
+    public ResponseEntity<ProductResponse> getProducts(@ModelAttribute GetRequest request) {
         return ResponseEntity.ok(productService.getProducts(request));
     }
 }
