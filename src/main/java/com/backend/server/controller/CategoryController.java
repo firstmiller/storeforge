@@ -15,6 +15,7 @@ import com.backend.server.requests.GetRequest;
 import com.backend.server.requests.UpdateCategoryRequest;
 import com.backend.server.service.CategoryService;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -25,6 +26,7 @@ public class CategoryController {
     
     private final CategoryService categoryService;
 
+    @Transactional
     @PostMapping("/create")
     public ResponseEntity<CategoryResponse> createCategory(@RequestBody CreateCategoryRequest request) {
         return ResponseEntity.ok(categoryService.createCategory(request));
@@ -35,6 +37,7 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.getCategory(request));
     }
 
+    @Transactional
     @PostMapping("/update")
     public ResponseEntity<CategoryResponse> updateCategory(@RequestBody UpdateCategoryRequest request) {
         return ResponseEntity.ok(categoryService.updateCategory(request));

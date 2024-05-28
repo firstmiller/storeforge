@@ -1,5 +1,6 @@
 package com.backend.server.model;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,7 +37,7 @@ public class Product {
     private Shop shop;
 
     @Column(name = "price", columnDefinition = "money")
-    private Double price;
+    private BigDecimal price;
 
     @Column(name = "quantity")
     private Integer quantity;
@@ -67,7 +68,7 @@ public class Product {
         private String productDescription;
         private byte[] productImage;
         private Shop shop;
-        private Double price;
+        private BigDecimal price;
         private Integer quantity;
         private Set<Category> categories;
 
@@ -92,7 +93,7 @@ public class Product {
             return this;
         }
 
-        public ProductBuilder setPrice(Double price) {
+        public ProductBuilder setPrice(BigDecimal price) {
             this.price = price;
             return this;
         }

@@ -1,5 +1,6 @@
 package com.backend.server.requests;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ public class CreateProductRequest {
     private String name;
     private String logo;
     private String description;
-    private double price;
+    private BigDecimal price;
     private Integer quantity;
     private String shopName;
     private List<String> categories;
