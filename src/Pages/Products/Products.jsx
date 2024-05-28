@@ -1,69 +1,54 @@
 import React, { useContext, useEffect, useState } from 'react'
 
-import { AuthContext } from '@context';
 import ButtonRegister from '@components/UI/button/ButtonRegister/ButtonRegister';
-import { AuthService, UserService } from '@utils/api'
+import { UserService, ProductService } from '@utils/api'
 import { DashboardLayout } from '@components/DashboardLayout';
 import { ModalDashboard } from '@components/UI/modal';
 import { InputDashboard } from '@components/UI/input';
 import { ProductRow } from './components/ProductRow';
 import { stringImgBase64 } from '@/constants';
-
-import axios from 'axios';
+import { isAuth } from '@utils/isAuth';
 
 
 const Products = () => {
-    const { setIsAuth } = useContext(AuthContext);
     const [userEmail, setUserEmail] = useState();
     const [modalActive, setModalActive] = useState(false);
-    const [inputsProduct, setInputsProduct] = useState({ name: '', price: '', category: '', imageBase64: '', count:'' });
+    const [inputsProduct, setInputsProduct] = useState({ name: '', price: '', imageBase64: '', count: '', description: '' });
     const [nameImage, setNameImage] = useState('');
     const imgBase64 = stringImgBase64;
-    const [products, setProducts] = useState([{ name: 'Iphone 5', price: '20000', categories: 'Apple', image: imgBase64, count: '10' }, { name: 'Iphone 6', price: '25000', categories: 'Apple', image: imgBase64, count: '5' }, { name: 'Iphone 7', price: '35000', categories: 'Apple', image: imgBase64, count: '3' }])
+    const [products, setProducts] = useState([])
     const addProduct = () => {
-        const newShop = {
-            shopName: 'asdasd',
+        const newProduct = {
+            name: inputsProduct.name,
             logo: inputsProduct.imageBase64,
-            styles: 'styles',
-            template: '213213',
-            shopDescription: inputsProduct.category
+            description: inputsProduct.description,
+            price: inputsProduct.price,
+            quantity: inputsProduct.count,
+            shopName: 'shop1',
         };
-        const axiosResponse = axios.post('http://localhost:8080/api/shop/get', {
-            headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('auth')
-            }
-        });
+        ProductService.addProduct(newProduct);
     }
-    let base64String = "";
 
     function imageUploaded(event) {
+        let base64String = "";
         let file = event.target.files[0]
         setNameImage(file.name);
         let reader = new FileReader();
-        reader.onload = function () {
+        reader.onload = () => {
             base64String = reader.result.replace("data:", "")
                 .replace(/^.+,/, "");
-            setInputsProduct({ ...inputsProduct, imageBase64: base64String })
-            console.log(base64String);
+            setInputsProduct({
+                ...inputsProduct, imageBase64: reader.result.replace("data:", "")
+                    .replace(/^.+,/, "")
+            })
         }
         reader.readAsDataURL(file);
+
     }
 
-    const logout = () => {
-        setIsAuth(false);
-        delete localStorage.auth;
-    }
     useEffect(() => {
-        document.title = 'Панель управления | StoreForge';
-        AuthService.login()
-            .then((response) => {
-                if (response.status !== 200) {
-                    logout();
-                }
-            })
-            .catch(() => {
-                logout();
-            });
+        document.title = 'Товары | StoreForge';
+        isAuth();
 
         UserService.getUserInfo()
             .then((user) => {
@@ -72,10 +57,19 @@ const Products = () => {
             .catch((e) => {
                 console.log(e);
             });
+
+        ProductService.getProducts()
+            .then((response) => {
+                return response.productNames;
+            })
+            .then((products) => {
+                console.log(products);
+                setProducts(products);
+            });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
-        <DashboardLayout page="products" userEmail={userEmail} logout={logout}>
+        <DashboardLayout page="products" userEmail={userEmail}>
             <div className="dashboard__content">
                 <div className="container">
                     <div className="products__menu">
@@ -98,7 +92,7 @@ const Products = () => {
                             </thead>
                             <tbody>
                                 {products.map((product) => {
-                                    return <ProductRow name={product.name} price={product.price} categories={product.categories} imageBase64={product.image} count={product.count} />
+                                    return <ProductRow key={product.productId} name={product.productName} price={product.price} categories={product.categories} imageBase64={product.productImage} count={product.quantity} />
                                 })}
                             </tbody>
                         </table>
@@ -111,23 +105,33 @@ const Products = () => {
                     value={inputsProduct.name}
                     onChange={(e) => { setInputsProduct({ ...inputsProduct, name: e.target.value }) }}
                     title="Название"
+                    required
                 />
                 <InputDashboard
                     value={inputsProduct.price}
                     onChange={(e) => { setInputsProduct({ ...inputsProduct, price: e.target.value }) }}
                     title="Цена"
+                    required
                 />
                 <InputDashboard
                     value={inputsProduct.category}
-                    onChange={(e) => { setInputsProduct({ ...inputsProduct, category: e.target.value }) }}
+                    onChange={(e) => { setInputsProduct({ ...inputsProduct, categories: e.target.value }) }}
                     title="Категории"
+                    required
                 />
                 <InputDashboard
-                    value={inputsProduct.category}
+                    value={inputsProduct.count}
                     onChange={(e) => { setInputsProduct({ ...inputsProduct, count: e.target.value }) }}
                     title="Количество"
+                    required
                 />
-                <input onChange={imageUploaded} name="file" type="file" id="input__file" className="input input__file" multiple />
+                <InputDashboard
+                    value={inputsProduct.description}
+                    onChange={(e) => { setInputsProduct({ ...inputsProduct, description: e.target.value }) }}
+                    title="Описание"
+                    required
+                />
+                <input required onChange={imageUploaded} name="file" type="file" id="input__file" className="input input__file" multiple />
                 <label htmlFor="input__file" className="input__file-button">
                     <span className="input__file-icon-wrapper"><div className="input__file-icon"></div></span>
                     <span className="input__file-button-text">Загрузите изображение</span>

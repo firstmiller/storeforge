@@ -1,29 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { AuthContext } from '@context';
 import ButtonRegister from '@components/UI/button/ButtonRegister/ButtonRegister';
-import { AuthService, UserService } from '@utils/api'
+import { UserService } from '@utils/api'
 import { DashboardLayout } from '@components/DashboardLayout';
+import { isAuth } from '@utils/isAuth';
+
 
 const Templates = () => {
-    const { setIsAuth } = useContext(AuthContext);
     const [userEmail, setUserEmail] = useState();
 
-    const logout = () => {
-        setIsAuth(false);
-        delete localStorage.auth;
-    }
     useEffect(() => {
-        document.title = 'Панель управления | StoreForge';
-        AuthService.login()
-            .then((response) => {
-                if (response.status !== 200) {
-                    logout();
-                }
-            })
-            .catch(() => {
-                logout();
-            });
+        document.title = 'Шаблоны | StoreForge';
+        isAuth();
 
         UserService.getUserInfo()
             .then((user) => {
@@ -35,7 +23,7 @@ const Templates = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
-        <DashboardLayout page="templates" userEmail={userEmail} logout={logout}>
+        <DashboardLayout page="templates" userEmail={userEmail}>
             <div className="dashboard__content">
                 <div className="dashboard__container">
                     <div className="title">Настройка интернет-магазина</div>

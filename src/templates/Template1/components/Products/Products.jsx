@@ -15,7 +15,9 @@ const Products = ({products, getCountProducts}) => {
                 </div>
             </div>
             <div className={classes.productsList}>
-                {products.map((product) => <ProductCard key={product.id} title={product.title} price={product.price}/>)}
+                {products.map((product) => {
+                    console.log(product);
+                return <ProductCard image={product.productImage} key={product.productId} title={product.productName} price={product.price}/>})}
             </div>
             <div />
         </div>

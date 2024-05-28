@@ -5,7 +5,7 @@ const InputDashboard = ({title, ...props}) => {
   return (
     <div className={classes.inputDashboard}>
         <label htmlFor="">{title}</label>
-        <input {...props } type="text" />
+        <input {...props } type='text' />
     </div>
   )
 }

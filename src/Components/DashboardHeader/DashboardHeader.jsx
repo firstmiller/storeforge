@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom';
 import classes from './header.module.css';
 
 import React from 'react'
+import {Logout} from '@utils/isAuth'
 
-const DashboardHeader = ({userEmail, logout}) => {
+const DashboardHeader = ({userEmail}) => {
     return (
         <>
             <header className={classes.header} >
@@ -17,7 +18,7 @@ const DashboardHeader = ({userEmail, logout}) => {
                                 <div className={classes.header__submenu}>
                                     <ul>
                                         <li>Настройки</li>
-                                        <li onClick={logout}>Выйти</li>
+                                        <li onClick={Logout}>Выйти</li>
                                     </ul>
                                 </div>
                             </div>

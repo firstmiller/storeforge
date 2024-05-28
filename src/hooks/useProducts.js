@@ -31,7 +31,7 @@ export const useProducts = (products, priceRange, query) => {
     const sortedAndSearchedproducts = useMemo(() => {
         if (!filteredProduct) return []; // Проверка на undefined
         return filteredProduct.filter(product =>
-            product.title.toLowerCase().includes(query.toLowerCase())
+            product.productName.toLowerCase().includes(query.toLowerCase())
         );
     }, [query, filteredProduct]);
 

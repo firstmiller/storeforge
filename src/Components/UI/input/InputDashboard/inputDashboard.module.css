@@ -6,6 +6,9 @@
     width: 300px;
     justify-content: space-between;
 }
+.inputDashboard label {
+    width: 110px;
+}
 .inputDashboard input {
     height: 28px;
     width: 183px;
