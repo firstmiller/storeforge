@@ -2,6 +2,8 @@ package com.backend.server.requests;
 
 import java.util.List;
 
+import com.backend.server.model.Product;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,5 +13,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class ProductResponse {
 
-    private List<String> productNames;
+    private List<Product> productNames;
 }

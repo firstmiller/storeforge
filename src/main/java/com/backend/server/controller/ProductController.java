@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.server.requests.CreateProductRequest;
 import com.backend.server.requests.CreateProductsRequest;
+import com.backend.server.requests.DeleteProductRequest;
 import com.backend.server.requests.GetRequest;
 import com.backend.server.requests.ProductResponse;
 import com.backend.server.service.ProductService;
@@ -43,7 +44,7 @@ public class ProductController {
     }
 
     @PostMapping("/delete")
-    public ResponseEntity<ProductResponse> deleteProduct(@RequestBody List<String> request) {
+    public ResponseEntity<String> deleteProduct(@RequestBody DeleteProductRequest request) {
         return ResponseEntity.ok(productService.deleteProduct(request));
     }
 

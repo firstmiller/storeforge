@@ -18,6 +18,7 @@ import com.backend.server.repository.ProductRepository;
 import com.backend.server.repository.ShopRepository;
 import com.backend.server.requests.CreateProductRequest;
 import com.backend.server.requests.CreateProductsRequest;
+import com.backend.server.requests.DeleteProductRequest;
 import com.backend.server.requests.GetRequest;
 import com.backend.server.requests.ProductResponse;
 
@@ -32,14 +33,14 @@ public class ProductService {
     private final CategoryRepository categoryRepository;
 
     public ProductResponse createProducts(CreateProductsRequest request) {
-        List<String> createdProducts = new ArrayList<>();
+        List<Product> createdProducts = new ArrayList<>();
         for (CreateProductRequest productRequest : request.getProducts()) {
             createdProducts.add(createProduct(productRequest));
         }
         return new ProductResponse(createdProducts);
     }
 
-    public String createProduct(CreateProductRequest request) {
+    public Product createProduct(CreateProductRequest request) {
         Optional<Shop> optionalShop = shopRepository.findByShopName(request.getShopName());
         if (!optionalShop.isPresent()) {
             throw new IllegalArgumentException();
@@ -59,7 +60,7 @@ public class ProductService {
             .build();
 
             productRepository.save(product);
-            return request.getName();
+            return product;
         }
     }
 
@@ -94,20 +95,20 @@ public class ProductService {
             .categories(categories)
             .build();
             productRepository.save(product);
-            return new ProductResponse(List.of(request.getName()));
+            return new ProductResponse(List.of(product));
         }
     }
 
-    public ProductResponse deleteProduct(List<String> request) {
-        Optional<Shop> optionalShop = shopRepository.findByShopName(request.get(0));
+    public String deleteProduct(DeleteProductRequest request) {
+        Optional<Shop> optionalShop = shopRepository.findByShopName(request.getShopName());
         if (!optionalShop.isPresent()) {
             throw new IllegalArgumentException();
         }
         else
         {
             Shop shop = optionalShop.get();
-            productRepository.deleteByShop_ShopIdAndProductName(shop.getShopId(), request.get(1));
-            return new ProductResponse(List.of(request.get(1)));
+            productRepository.deleteByShop_ShopIdAndProductName(shop.getShopId(), request.getProductName());
+            return request.getProductName();
         }
     }
 
@@ -120,7 +121,7 @@ public class ProductService {
         {
             Shop shop = optionalShop.get();
             List<Product> products = productRepository.findAllByShop_ShopId(shop.getShopId());
-            return new ProductResponse(products.stream().map(Product::getProductName).collect(Collectors.toList()));
+            return new ProductResponse(products);
         }
     }
 }
