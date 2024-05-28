@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.server.requests.CreateProductRequest;
@@ -46,7 +47,7 @@ public class ProductController {
     }
 
     @GetMapping("/get")
-    public ResponseEntity<ProductResponse> getProducts(@RequestBody GetRequest request) {
+    public ResponseEntity<ProductResponse> getProducts(@RequestParam GetRequest request) {
         return ResponseEntity.ok(productService.getProducts(request));
     }
 }

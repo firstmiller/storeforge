@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.server.requests.CategoryResponse;
@@ -33,7 +34,7 @@ public class CategoryController {
     }
 
     @PostMapping("/get")
-    public ResponseEntity<List<CategoryResponse>> getCategory(@RequestBody GetRequest request) {
+    public ResponseEntity<List<CategoryResponse>> getCategory(@RequestParam GetRequest request) {
         return ResponseEntity.ok(categoryService.getCategory(request));
     }
 
