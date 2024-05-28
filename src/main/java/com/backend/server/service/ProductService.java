@@ -1,6 +1,7 @@
 package com.backend.server.service;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -50,9 +51,11 @@ public class ProductService {
             Shop shop = optionalShop.get();
             Set<Category> categories = new HashSet<>();
             categories.addAll(categoryRepository.findAllByShop_ShopIdAndCategoryNameIn(shop.getShopId(), request.getCategories()));
+            byte[] logoBytes = Base64.getDecoder().decode(request.getLogo());
             var product = Product.builder()
             .productName(request.getName())
             .productDescription(request.getDescription())
+            .productImage(logoBytes)
             .price(request.getPrice())
             .quantity(request.getQuantity())
             .shop(shop)
@@ -86,9 +89,11 @@ public class ProductService {
             Shop shop = optionalShop.get();
             Set<Category> categories = new HashSet<>();
             categories.addAll(categoryRepository.findAllByShop_ShopIdAndCategoryNameIn(shop.getShopId(), request.getCategories()));
+            byte[] logoBytes = Base64.getDecoder().decode(request.getLogo());
             var product = Product.builder()
             .productName(request.getName())
             .productDescription(request.getDescription())
+            .productImage(logoBytes)
             .price(request.getPrice())
             .quantity(request.getQuantity())
             .shop(shop)

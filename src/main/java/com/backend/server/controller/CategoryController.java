@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +35,7 @@ public class CategoryController {
     }
 
     @PostMapping("/get")
-    public ResponseEntity<List<CategoryResponse>> getCategory(@RequestParam GetRequest request) {
+    public ResponseEntity<List<CategoryResponse>> getCategory(@ModelAttribute GetRequest request) {
         return ResponseEntity.ok(categoryService.getCategory(request));
     }
 
