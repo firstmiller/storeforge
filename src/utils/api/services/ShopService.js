@@ -1,22 +1,22 @@
 import { serverURI } from '@/constants'
 export default class ProductService {
 
-    static async getProducts(shop) {
-        const response = await fetch(`${serverURI}/api/product/get?shopName=${shop.shopName}`, {
+    static async getShops() {
+        const response = await fetch(`${serverURI}/api/shop/get`, {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('auth')
             }
+        }).then((response) => {
+            return response.json()
         })
-            .then((response) => response.json());
         return response;
     }
 
-    static async addProduct(product) {
-        console.log(product);
-        const response = await fetch(`${serverURI}/api/product/create`, {
+    static async addShop(shop) {
+        const response = await fetch(`${serverURI}/api/shop/create`, {
             method: 'POST',
-            body: JSON.stringify({ products: [product] }),
+            body: JSON.stringify(shop),
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
                 'Authorization': 'Bearer ' + localStorage.getItem('auth')
@@ -37,11 +37,11 @@ export default class ProductService {
             }
         });
     }
-    static async updateProduct(product) {
-        console.log(product);
-        const response = await fetch(`${serverURI}/api/product/update`, {
+    static async updateShop(shop) {
+        console.log(shop);
+        const response = await fetch(`${serverURI}/api/shop/update`, {
             method: 'POST',
-            body: JSON.stringify(product),
+            body: JSON.stringify(shop),
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
                 'Authorization': 'Bearer ' + localStorage.getItem('auth')

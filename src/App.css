@@ -91,7 +91,19 @@
 body {
     min-width: 320px;
 }
-
+.options__text {
+    font-size: 20px;
+}
+.options__container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    vertical-align: center;
+}
+.options__container .logo {
+    align-items: center;
+    display: flex;
+}
 /* products */
 .products__menu {
     display: flex;

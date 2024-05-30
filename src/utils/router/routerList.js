@@ -11,7 +11,7 @@ import { Store } from "@/templates"
 export const privateRoutes = [
     { path: '/dashboard', component: Dashboard },
     { path: '/dashboard/templates', component: Templates },
-    { path: '/test', component: Store },
+    { path: '/myStore', component: Store },
     { path: '/dashboard/products', component: Products }
 ]
 export const publicRoutes = [

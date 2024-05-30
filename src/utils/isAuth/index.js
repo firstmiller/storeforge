@@ -1,2 +1,2 @@
-export {isAuth} from './isAuth'
+export {isAuthCheck} from './isAuth'
 export {logout} from './isAuth';

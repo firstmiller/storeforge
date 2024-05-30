@@ -3,15 +3,12 @@ import React, { useEffect, useState } from 'react'
 import ButtonRegister from '@components/UI/button/ButtonRegister/ButtonRegister';
 import { UserService } from '@utils/api'
 import { DashboardLayout } from '@components/DashboardLayout';
-import { isAuth } from '@utils/isAuth';
-
 
 const Templates = () => {
     const [userEmail, setUserEmail] = useState();
 
     useEffect(() => {
         document.title = 'Шаблоны | StoreForge';
-        isAuth();
 
         UserService.getUserInfo()
             .then((user) => {

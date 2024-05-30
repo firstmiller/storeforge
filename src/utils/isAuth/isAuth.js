@@ -1,17 +1,19 @@
 import { AuthService } from '@utils/api'
 
 export const logout = () => {
-    delete localStorage.auth;
-    window.location.reload();
+    if (localStorage.auth) {
+        delete localStorage.auth;
+        window.location.reload();
+    }
 }
-export const isAuth = () => {
+export const isAuthCheck = () => {
     AuthService.login()
-    .then((response) => {
-        if (response.status !== 200) {
+        .then((response) => {
+            if (response.status !== 200) {
+                logout();
+            }
+        })
+        .catch(() => {
             logout();
-        }
-    })
-    .catch(() => {
-        logout();
-    });
+        });
 };

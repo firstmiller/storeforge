@@ -1,8 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 .header {
     height: 88px;
     background-color: #1B6392;
+    position: relative;
 }
+
 .header__container {
     display: flex;
     align-items: center;
@@ -12,39 +15,46 @@
     margin: 0 auto;
     height: 100%;
 }
+
 .header__logo {
     display: flex;
     align-items: center;
     gap: 8px;
 }
-.header__imageLogo {
+
+.header__imageLogo img {
     width: 48px;
     height: 48px;
     background-image: url('../../assets/logo.svg');
 }
+
 .header__nameLogo {
     font-family: "Public Sans", sans-serif;
     font-weight: bold;
     font-size: 32px;
     color: #FFFFFF;
 }
+
 .header__search {
     width: 646px;
     position: relative;
     border-radius: 2px;
     margin: 20px;
 }
-.header__search input{
+
+.header__search input {
     width: 100%;
     height: 48px;
     padding: 14px 20px;
     outline: none;
     font-size: 18px;
 }
+
 .header__nav {
     width: 144px;
     height: 48px;
 }
+
 .header__searchImg {
     position: absolute;
     right: 20px;
@@ -55,24 +65,52 @@
     height: 20px;
     background-image: url('../../assets/search.svg');
 }
+
 .header__nav {
     display: flex;
     align-items: center;
     justify-content: right;
 }
+
 .header__basket {
-    width: 32px;
-    height: 32px;
-    background-image: url('../../assets/basket.svg');
+    cursor: pointer;
+    position: relative;
+    color: #fff;
+    transition: color, transform 500ms ease;
 }
+.header__sizeBasket {
+    position: relative;
+    left: 2px;
+}
+
+.header__basket:hover,
+.header__basket.active {
+    color: #231a1a;
+    transform: scale(1.4);
+}
+
 .header__contacts {
     display: flex;
     align-items: center;
 }
+
 .header__contactsPhoneImg {
     width: 20px;
     height: 20px;
     background-size: contain;
     background-repeat: no-repeat;
     background-image: url('../../assets/phone.svg');
+}
+.shopCart {
+    position: absolute; 
+    top: 95px;
+    right: 20px;
+    width: 450px;
+    min-height: 100px;  
+    background-color: #fafafa;
+    box-shadow: 4px 5px 15px #606060;
+
+}
+.header__sizeBasket {
+    text-align: center;
 }
