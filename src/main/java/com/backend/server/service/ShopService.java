@@ -57,25 +57,21 @@ public class ShopService {
         if (!optionalShop.isPresent()) {
             throw new IllegalArgumentException();
         }
-        else
-        {
-            Shop shop = optionalShop.get();
-            if (!(shop.getShopName().equals(request.getShopName())))
-            {
-                shop.setShopName(request.getShopName());
-            }
+        Shop shop = optionalShop.get();
+        
+        if (request.getLogo()!= null) {
             byte[] logoBytes = Base64.getDecoder().decode(request.getLogo());
             shop.setLogo(logoBytes);
-            shop.setTemplate(request.getTemplate());
-            shop.setShop_description(request.getShopDescription());
-            shop.setStyles(request.getStyles());
-            
-            shopRepository.save(shop);
-            return ShopResponse.builder()
-                   .shopName(request.getShopName())
-                   .build();
         }
+        shop.setShopName(request.getNewShopName());
+        shop.setTemplate(request.getTemplate());
+        shop.setShop_description(request.getShopDescription());
+        shop.setStyles(request.getStyles());
         
+        shopRepository.save(shop);
+        return ShopResponse.builder()
+                .shopName(shop.getShopName())
+                .build();
     }
 
     public ShopResponse deleteShop(String header, String request) {
