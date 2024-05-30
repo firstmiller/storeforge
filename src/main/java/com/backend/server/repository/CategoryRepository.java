@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.backend.server.model.Category;
+import com.backend.server.model.Shop;
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
@@ -14,6 +15,8 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     List<Category> findAllByShop_ShopIdAndCategoryNameIn(Long shopId, List<String> categories);
 
     Optional<Category> findByCategoryName(String request);
+
+    Optional<Category> findByCategoryNameAndShop_ShopId(String categoryName, Shop shop);
 
     
 }

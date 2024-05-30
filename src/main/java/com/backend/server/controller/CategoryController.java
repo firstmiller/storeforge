@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.server.requests.CategoryResponse;
 import com.backend.server.requests.CreateCategoryRequest;
+import com.backend.server.requests.DeleteCategoryRequest;
 import com.backend.server.requests.GetRequest;
 import com.backend.server.requests.UpdateCategoryRequest;
 import com.backend.server.service.CategoryService;
@@ -46,7 +47,7 @@ public class CategoryController {
     }
 
     @PostMapping("/delete")
-    public ResponseEntity<CategoryResponse> deleteCategory(@RequestBody String request) {
+    public ResponseEntity<CategoryResponse> deleteCategory(@RequestBody DeleteCategoryRequest request) {
         return ResponseEntity.ok(categoryService.deleteCategory(request));
     }
 }

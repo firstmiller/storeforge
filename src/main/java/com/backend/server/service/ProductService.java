@@ -22,6 +22,7 @@ import com.backend.server.requests.CreateProductsRequest;
 import com.backend.server.requests.DeleteProductRequest;
 import com.backend.server.requests.GetRequest;
 import com.backend.server.requests.ProductResponse;
+import com.backend.server.requests.UpdateProductRequest;
 
 import lombok.RequiredArgsConstructor;
 
@@ -46,25 +47,23 @@ public class ProductService {
         if (!optionalShop.isPresent()) {
             throw new IllegalArgumentException();
         }
-        else
-        {
-            Shop shop = optionalShop.get();
-            Set<Category> categories = new HashSet<>();
-            categories.addAll(categoryRepository.findAllByShop_ShopIdAndCategoryNameIn(shop.getShopId(), request.getCategories()));
-            byte[] logoBytes = Base64.getDecoder().decode(request.getLogo());
-            var product = Product.builder()
-            .productName(request.getName())
-            .productDescription(request.getDescription())
-            .productImage(logoBytes)
-            .price(request.getPrice())
-            .quantity(request.getQuantity())
-            .shop(shop)
-            .categories(categories)
-            .build();
+        Shop shop = optionalShop.get();
+        Set<Category> categories = new HashSet<>();
+        categories.addAll(categoryRepository.findAllByShop_ShopIdAndCategoryNameIn(shop.getShopId(), request.getCategories()));
+        byte[] logoBytes = Base64.getDecoder().decode(request.getLogo());
+        var product = Product.builder()
+        .productName(request.getName())
+        .productDescription(request.getDescription())
+        .productImage(logoBytes)
+        .price(request.getPrice())
+        .quantity(request.getQuantity())
+        .shop(shop)
+        .categories(categories)
+        .build();
 
-            productRepository.save(product);
-            return product;
-        }
+        productRepository.save(product);
+        return product;
+        
     }
 
     public List<Product> getProducts(String shopName) {
@@ -79,29 +78,32 @@ public class ProductService {
         }
     }
 
-    public ProductResponse updateProduct(CreateProductRequest request) {
+    public ProductResponse updateProduct(UpdateProductRequest request) {
         Optional<Shop> optionalShop = shopRepository.findByShopName(request.getShopName());
         if (!optionalShop.isPresent()) {
             throw new IllegalArgumentException();
         }
-        else
-        {
-            Shop shop = optionalShop.get();
-            Set<Category> categories = new HashSet<>();
-            categories.addAll(categoryRepository.findAllByShop_ShopIdAndCategoryNameIn(shop.getShopId(), request.getCategories()));
-            byte[] logoBytes = Base64.getDecoder().decode(request.getLogo());
-            var product = Product.builder()
-            .productName(request.getName())
-            .productDescription(request.getDescription())
-            .productImage(logoBytes)
-            .price(request.getPrice())
-            .quantity(request.getQuantity())
-            .shop(shop)
-            .categories(categories)
-            .build();
-            productRepository.save(product);
-            return new ProductResponse(List.of(product));
+        Shop shop = optionalShop.get();
+        Set<Category> categories = new HashSet<>();
+        categories.addAll(categoryRepository.findAllByShop_ShopIdAndCategoryNameIn(shop.getShopId(), request.getCategories()));
+        
+        Optional<Product> optionalProduct = productRepository.findByProductNameAndShop_ShopId(request.getName(), shop.getShopId());
+        if (!optionalProduct.isPresent()) {
+            throw new IllegalArgumentException();
         }
+        Product product = optionalProduct.get();
+        product.setProductName(request.getNewName());
+        product.setProductDescription(request.getDescription());
+        if (request.getLogo()!= null) {
+            byte[] logoBytes = Base64.getDecoder().decode(request.getLogo());
+            product.setProductImage(logoBytes);
+        }
+        product.setPrice(request.getPrice());
+        product.setQuantity(request.getQuantity());
+        product.setCategories(categories);
+        productRepository.save(product);
+        return new ProductResponse(List.of(product));
+        
     }
 
     public String deleteProduct(DeleteProductRequest request) {

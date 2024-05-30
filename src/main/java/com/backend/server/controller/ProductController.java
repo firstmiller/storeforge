@@ -18,6 +18,7 @@ import com.backend.server.requests.CreateProductsRequest;
 import com.backend.server.requests.DeleteProductRequest;
 import com.backend.server.requests.GetRequest;
 import com.backend.server.requests.ProductResponse;
+import com.backend.server.requests.UpdateProductRequest;
 import com.backend.server.service.ProductService;
 
 import jakarta.transaction.Transactional;
@@ -39,7 +40,7 @@ public class ProductController {
 
     @Transactional
     @PostMapping("/update")
-    public ResponseEntity<ProductResponse> updateProduct(@RequestBody CreateProductRequest request) {
+    public ResponseEntity<ProductResponse> updateProduct(@RequestBody UpdateProductRequest request) {
         return ResponseEntity.ok(productService.updateProduct(request));
     }
 

@@ -11,6 +11,7 @@ import com.backend.server.repository.CategoryRepository;
 import com.backend.server.repository.ShopRepository;
 import com.backend.server.requests.CategoryResponse;
 import com.backend.server.requests.CreateCategoryRequest;
+import com.backend.server.requests.DeleteCategoryRequest;
 import com.backend.server.requests.GetRequest;
 import com.backend.server.requests.UpdateCategoryRequest;
 
@@ -63,11 +64,17 @@ public class CategoryService {
         }
     }
 
-    public CategoryResponse deleteCategory(String request) {
-        categoryRepository.findByCategoryName(request).ifPresent(category -> {
+    public CategoryResponse deleteCategory(DeleteCategoryRequest request) {
+        Optional<Shop> optionalShop = shopRepository.findByShopName(request.getShopName());
+        if (!optionalShop.isPresent())
+        {
+            throw new IllegalArgumentException();
+        }
+        Shop shop = optionalShop.get();
+        categoryRepository.findByCategoryNameAndShop_ShopId(request.getCategoryName(), shop).ifPresent(category -> {
             categoryRepository.delete(category);
         });
-        return new CategoryResponse(request);
+        return new CategoryResponse(request.getCategoryName());
     }
 
     public CategoryResponse updateCategory(UpdateCategoryRequest request) {
