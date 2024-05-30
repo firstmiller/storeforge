@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,7 +36,8 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.createCategory(request));
     }
 
-    @PostMapping("/get")
+    @Transactional
+    @GetMapping("/get")
     public ResponseEntity<List<CategoryResponse>> getCategory(@ModelAttribute GetRequest request) {
         return ResponseEntity.ok(categoryService.getCategory(request));
     }
@@ -46,6 +48,7 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.updateCategory(request));
     }
 
+    @Transactional
     @PostMapping("/delete")
     public ResponseEntity<CategoryResponse> deleteCategory(@RequestBody DeleteCategoryRequest request) {
         return ResponseEntity.ok(categoryService.deleteCategory(request));

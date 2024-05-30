@@ -46,23 +46,15 @@ public class CategoryService {
         if (!optionalShop.isPresent()) {
             throw new IllegalArgumentException();
         }
-        else
-        {
-            Shop shop = optionalShop.get();
-            List<Category> optionalCategory = categoryRepository.findAllByShop_ShopId(shop.getShopId());
-            if (optionalCategory.isEmpty()) {
-                throw new IllegalArgumentException();
-            }
-            else
-            {
-                CategoryResponse[] categoryResponse = new CategoryResponse[optionalCategory.size()];
-                for (int i = 0; i < optionalCategory.size(); i++) {
-                    categoryResponse[i] = new CategoryResponse(optionalCategory.get(i).getCategoryName());
-                }
-                return List.of(categoryResponse);
-            }
+        Shop shop = optionalShop.get();
+        List<Category> optionalCategory = categoryRepository.findAllByShop_ShopId(shop.getShopId());
+        if (optionalCategory.isEmpty()) {
+            throw new IllegalArgumentException();
         }
+        List<CategoryResponse> categoryResponse = optionalCategory.stream().map(category -> new CategoryResponse(category.getCategoryName())).toList();
+        return categoryResponse;    
     }
+    
 
     public CategoryResponse deleteCategory(DeleteCategoryRequest request) {
         Optional<Shop> optionalShop = shopRepository.findByShopName(request.getShopName());
@@ -71,7 +63,7 @@ public class CategoryService {
             throw new IllegalArgumentException();
         }
         Shop shop = optionalShop.get();
-        categoryRepository.findByCategoryNameAndShop_ShopId(request.getCategoryName(), shop).ifPresent(category -> {
+        categoryRepository.findByCategoryNameAndShop_ShopId(request.getCategoryName(), shop.getShopId()).ifPresent(category -> {
             categoryRepository.delete(category);
         });
         return new CategoryResponse(request.getCategoryName());

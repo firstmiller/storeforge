@@ -1,7 +1,5 @@
 package com.backend.server.controller;
 
-import java.util.List;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -50,6 +48,7 @@ public class ShopController {
         return ResponseEntity.ok(shopService.deleteShop(authorizationHeader, request));
     }
 
+    @Transactional
     @GetMapping("/get")
     public ResponseEntity<Shop> getShop(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader) {
         String token = null;
@@ -58,5 +57,4 @@ public class ShopController {
         }
         return ResponseEntity.ok(shopService.getShop(token));
     }
-
 }
