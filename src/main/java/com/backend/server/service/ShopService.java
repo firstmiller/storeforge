@@ -1,7 +1,6 @@
 package com.backend.server.service;
 
 import java.util.Base64;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;

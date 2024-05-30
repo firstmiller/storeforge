@@ -1,7 +1,5 @@
 package com.backend.server.requests;
 
-import com.backend.server.model.Shop;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

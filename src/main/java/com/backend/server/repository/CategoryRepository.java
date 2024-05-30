@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.backend.server.model.Category;
-import com.backend.server.model.Shop;
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
