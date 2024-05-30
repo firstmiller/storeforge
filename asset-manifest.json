@@ -1,24 +1,23 @@
 {
   "files": {
-    "main.css": "/storeforge/static/css/main.49bd4294.css",
-    "main.js": "/storeforge/static/js/main.c50c0cab.js",
+    "main.css": "/storeforge/static/css/main.70dadfa1.css",
+    "main.js": "/storeforge/static/js/main.dccee738.js",
     "static/media/profileImage.svg": "/storeforge/static/media/profileImage.3828074f1123d7e9b7e2.svg",
     "static/media/download.svg": "/storeforge/static/media/download.43d0ed2137ec33644857.svg",
     "static/media/hidePass.png": "/storeforge/static/media/hidePass.54b3107d160578572bcc.png",
     "static/media/product.png": "/storeforge/static/media/product.b6357a69f9d787f32a56.png",
     "static/media/cross.svg": "/storeforge/static/media/cross.f0f692777cafa708605f.svg",
     "static/media/phone.svg": "/storeforge/static/media/phone.344f3ca2a45687874f87.svg",
-    "static/media/basket.svg": "/storeforge/static/media/basket.0d4281395582db061f84.svg",
     "index.html": "/storeforge/index.html",
     "static/media/logo.svg": "/storeforge/static/media/logo.69133eee8144022a8521.svg",
     "static/media/search.svg": "/storeforge/static/media/search.1255a089cd44e659919d.svg",
     "static/media/burger-menu.svg": "/storeforge/static/media/burger-menu.fc12fbd678bea2ce4ec9.svg",
     "static/media/Arrow.svg": "/storeforge/static/media/Arrow.cd7e06ccc75b2deabccc.svg",
-    "main.49bd4294.css.map": "/storeforge/static/css/main.49bd4294.css.map",
-    "main.c50c0cab.js.map": "/storeforge/static/js/main.c50c0cab.js.map"
+    "main.70dadfa1.css.map": "/storeforge/static/css/main.70dadfa1.css.map",
+    "main.dccee738.js.map": "/storeforge/static/js/main.dccee738.js.map"
   },
   "entrypoints": [
-    "static/css/main.49bd4294.css",
-    "static/js/main.c50c0cab.js"
+    "static/css/main.70dadfa1.css",
+    "static/js/main.dccee738.js"
   ]
 }
