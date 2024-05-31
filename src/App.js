@@ -1,28 +1,29 @@
-import {BrowserRouter, Route,  Routes, Navigate} from "react-router-dom";
-
-
-import React from 'react';
-
+import { BrowserRouter } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import { Router } from "@/router";
+import { AuthContext } from "@context";
+import { isAuthCheck } from '@utils/isAuth';
 
-import Main from './Pages/Main';
-import Login from './Pages/Login';
-import Register from './Pages/Register';
-import Recovery from './Pages/Recovery';
-import ChangePassword from './Pages/ChangePassword';
+
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-          <Route path = "/" element ={<Main/>}/>
-          <Route path = "/login" element ={<Login/>}/>
-          <Route path = "/register" element ={<Register/>}/>
-          <Route path = "/recovery" element ={<Recovery/>}/>
-          <Route path="*" element={<Main/>}/>
-      </Routes>
-    </BrowserRouter>
 
+  const [isAuth, setIsAuth] = useState(localStorage.getItem('auth'));
+  useEffect(() => {
+    
+    isAuthCheck();
+  },[])
+  return (
+
+    <AuthContext.Provider value={{
+      isAuth,
+      setIsAuth
+    }}>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <Router />
+      </BrowserRouter>
+    </AuthContext.Provider >
   );
 }
 

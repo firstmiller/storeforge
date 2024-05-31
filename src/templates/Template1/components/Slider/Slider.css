@@ -1,0 +1,24 @@
+.slider {
+    width: 100%;
+    height: 2px;
+    background-color: #cdd9ed;
+    margin-top: 20px;
+}
+
+.slider .thumb {
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 2px solid #FA8232;
+    top: -5px
+}
+
+.track-1 {
+    border: 1px solid #FA8232;
+}
+
+.slider .thumb:focus {
+    outline: none;
+}

@@ -1,0 +1,55 @@
+.navbar {
+	min-width: 312px;
+	flex-grow: 1;
+}
+
+.category__title {
+	text-transform: uppercase;
+	font-family: "Public Sans", sans-serif;
+	font-size: 16px;
+	margin-bottom: 16px;
+}
+
+.navbar__categories::after {
+	content: '';
+	height: 1px;
+	background-color: #E4E7E9;
+	display: block;
+	width: 100%;
+	margin: 24px 0;
+}
+
+.navbar__categoryList {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+/* PriceSlider */
+
+.pricerange {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+.pricerange__title {
+	text-transform: uppercase;
+	font-size: 16px;
+	font-family: "Public Sans", sans-serif;
+}
+
+.slidecontainer input {
+	width: 100%;
+	font-family: "Public Sans", sans-serif;
+	font-size: 14px;
+}
+
+.pricerange__inputs {
+	display: flex;
+	justify-content: space-between;
+}
+.pricerange__inputs input { 
+	width: 150px;
+	box-sizing: border-box;
+	padding: 8px 12px;
+}

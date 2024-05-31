@@ -1,0 +1,17 @@
+.product {
+    display: flex;
+    flex-direction: column;
+    min-width: 234px;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid #E4E7E9;
+    padding: 10px;
+}
+.product__title {
+    font-family: 'Public Sans';
+    font-size: 22px;
+}
+.product__image img {
+    width: 150px;
+    height: 160px;
+}

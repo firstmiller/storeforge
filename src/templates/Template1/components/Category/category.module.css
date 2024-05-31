@@ -1,0 +1,35 @@
+.navbar__category {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	font-family: "Public Sans", sans-serif;
+	font-size: 14px;
+}
+
+.navbar__category {
+	display: flex;
+	margin-right: 10px;
+}
+
+.navbar__category input[type=radio] {
+	display: none;
+}
+
+.navbar__category label {
+	box-sizing: initial;
+	display: block;
+	width: 18px;
+	height: 18px;
+	border: 1px solid #C9CFD2;
+	cursor: pointer;
+	border-radius: 50%;
+	user-select: none;
+}
+
+/* Checked */
+.navbar__category input[type=radio]:checked+label {
+	width: 8px;
+	height: 8px;
+	border: 6px solid #FA8232;
+}
+

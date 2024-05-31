@@ -1,0 +1,29 @@
+.products__container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+}
+.products__options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 44px;
+    background-color: #F2F4F5;
+    width: 100%;
+    padding: 12px 24px;
+    font-family: "Public Sans", sans-serif;
+    font-size: 14px;
+}
+.products__filtersTitle {
+    color: #5F6C72;
+}
+.products_resultFoundsText {
+    color: #5F6C72;
+}
+.productsList {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}

@@ -1,0 +1,90 @@
+.header {
+    width: 100%;
+    height: 70px;
+    background-color: #FFFFFf;
+    border-bottom: 1px solid #0000001a;
+    position: fixed;
+    top: 0;
+    margin-bottom: 50px;
+}
+
+.header__container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    height: 100%;
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1300px;
+}
+
+.header__logo {
+    font-size: 32px;
+    font-family: "Mulish", sans-serif;
+    font-weight: 600;
+    border-color: rgba(0,0,0, 0.1);
+    color: #6cb52d;
+}
+.header__profile {
+    display: flex;
+    align-items: center;
+}
+.header__profileImage {
+    background-image: url('./img/profileImage.svg');
+    width: 46px;
+    height: 46px;
+    margin-right: 10px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+.header__arrow {
+    background-image: url('./img/Arrow.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 14px;
+    height: 9px;
+    position: relative
+}
+.header__email {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+/* submenu */
+
+.header__submenu {
+    display: none;
+}
+.header__arrow:hover .header__submenu {
+
+    display: block;
+    position: absolute;
+    padding-top: 40px;
+    right: 0;
+}
+.header__submenu ul {
+    color: black;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-radius: 5px;
+    background-color: rgb(184, 190, 196);
+}
+.header__submenu li {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
+}
+/* .nav__item:hover {
+    color: rgba(255, 255, 255, 0.8);
+} */

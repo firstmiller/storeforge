@@ -1,0 +1,22 @@
+tbody tr {
+    height: 86px;
+    border-bottom:1px solid #B6B6B6
+}
+tbody tr td {
+    vertical-align: middle;
+    text-align: center;
+    font-size: 20px;
+}
+.row__image img {
+    height: 70px;
+}
+.row__name {
+    width: 220px;
+}
+.row__price {
+    width: 40px;
+}
+.row__categories {
+    width: 250px;
+    font-size: 15px;
+}
