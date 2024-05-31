@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/storeforge/static/css/main.29172b59.css",
-    "main.js": "/storeforge/static/js/main.dccee738.js",
+    "main.js": "/storeforge/static/js/main.6b61ca3c.js",
     "static/media/profileImage.svg": "/storeforge/static/media/profileImage.3828074f1123d7e9b7e2.svg",
     "static/media/download.svg": "/storeforge/static/media/download.43d0ed2137ec33644857.svg",
     "static/media/hidePass.png": "/storeforge/static/media/hidePass.54b3107d160578572bcc.png",
@@ -13,10 +13,10 @@
     "static/media/burger-menu.svg": "/storeforge/static/media/burger-menu.fc12fbd678bea2ce4ec9.svg",
     "static/media/Arrow.svg": "/storeforge/static/media/Arrow.cd7e06ccc75b2deabccc.svg",
     "main.29172b59.css.map": "/storeforge/static/css/main.29172b59.css.map",
-    "main.dccee738.js.map": "/storeforge/static/js/main.dccee738.js.map"
+    "main.6b61ca3c.js.map": "/storeforge/static/js/main.6b61ca3c.js.map"
   },
   "entrypoints": [
     "static/css/main.29172b59.css",
-    "static/js/main.dccee738.js"
+    "static/js/main.6b61ca3c.js"
   ]
 }
