@@ -25,7 +25,6 @@
 .header__imageLogo img {
     width: 48px;
     height: 48px;
-    background-image: url('../../assets/logo.svg');
 }
 
 .header__nameLogo {
